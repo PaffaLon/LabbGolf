@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Golf.Menus.Content
 {
-    public class SplashMenu : Menu
+    public class MainMenu : Menu
     {
         public enum Buttons
         {

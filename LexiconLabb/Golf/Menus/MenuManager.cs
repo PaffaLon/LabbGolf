@@ -6,6 +6,12 @@ namespace Golf.Menus
 {
     class MenuManager
     {
+        private enum ApplicationMenus{
+            SplashMenu,
+            LoadGame,
+            ScoreBoardMenu,
+        }
+        private int ActiveApplicationMenu { get; set; }
         public MenuManager()
         {
 

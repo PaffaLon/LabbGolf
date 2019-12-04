@@ -14,7 +14,8 @@ namespace Golf.Menus
         private int ActiveApplicationMenu { get; set; }
         public MenuManager()
         {
-
+            ActiveApplicationMenu = (int)ApplicationMenus.SplashMenu;
+            
         }
         public void GetMenu()
         {

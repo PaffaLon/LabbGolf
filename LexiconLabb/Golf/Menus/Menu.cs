@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Golf.Menus
 {
-    class Menu
+    public class Menu
     {
         public List<string> Elements { get; set; }
         public int Button { get; set; }

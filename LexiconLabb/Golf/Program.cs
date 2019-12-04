@@ -1,4 +1,5 @@
 ﻿using System;
+using Golf.Menus;
 
 namespace Golf
 {
@@ -6,7 +7,8 @@ namespace Golf
     {
         static void Main()
         {
-            
+            MenuManager menuManager = new MenuManager();
+            menuManager.GetMenu();
         }
     }
 }

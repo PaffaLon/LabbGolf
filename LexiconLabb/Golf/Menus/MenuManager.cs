@@ -88,9 +88,7 @@ namespace Golf.Menus
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Exit)
                 {
-                    Console.Clear();
-                    Console.WriteLine("The Scoreboard has not jet been implemented.");
-                    Thread.Sleep(1000);
+                    Environment.Exit(0);
                 }
             }
             GetMenu();

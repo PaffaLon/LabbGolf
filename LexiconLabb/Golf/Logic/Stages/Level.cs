@@ -4,7 +4,11 @@ using System.Text;
 
 namespace Golf.Logic.Stages
 {
-    class Level
+    public class Level
     {
+        public string Name { get; set; }
+        public string DifficulityRating { get; set; }
+        public int SwingScore { get; set; }
+        public int wind { get; set; }
     }
 }

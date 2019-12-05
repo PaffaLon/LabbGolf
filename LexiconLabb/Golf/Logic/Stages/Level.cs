@@ -6,7 +6,7 @@ namespace Golf.Logic.Stages
 {
     public class Level
     {
-        public enum Difficulity
+        public enum DifficulityRatings
         {
             Beginer,
             Easy,
@@ -19,6 +19,7 @@ namespace Golf.Logic.Stages
             Revoked
         }
         public string Name  { get; set; }
+        public int Difficulity { get; set; }
         public int MaxScore { get; set; }
         public int MinScore { get; set; }
         public int StartinPositionGolfBall  { get; set; }

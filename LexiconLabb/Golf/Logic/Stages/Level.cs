@@ -25,5 +25,6 @@ namespace Golf.Logic.Stages
         public int StartinPositionGolfBall  { get; set; }
         public int StartingPositionGolfHole { get; set; }
         public int StartingPostionPlayer    { get; set; }
+        public int StartingPositionGolfSecret { get; set; }
     }
 }

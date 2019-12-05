@@ -23,6 +23,7 @@ namespace Golf.Logic.Stages.Levels
                 this.StartingPositionGolfHole = 0;
                 this.StartinPositionGolfBall = 35;
                 this.StartingPostionPlayer = this.StartinPositionGolfBall - 1;
+                this.StartingPositionGolfSecret = 41;
             }
 
             int GetDifficulity()

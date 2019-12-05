@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Golf.Logic.Stages.Levels
 {
-    class LevelOne
+    public class Toturial : Level
     {
     }
 }

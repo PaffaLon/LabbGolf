@@ -8,11 +8,17 @@ namespace Golf.Characters.Players
     {
         public static List<Player> Players { get; set; }
         Player Player = new Player();
-        PlayerManager()
+       public PlayerManager()
         {
 
         }
-        public void NewPlayer(string newPlayerName)
+        public void AddPlayer(string playerName)
+        {
+            Player.Name = playerName;
+            //To Do
+            //GeneratePlayerStats();
+        }
+        public void NewPlayer()
         {
             Players.Add(Player);
         }

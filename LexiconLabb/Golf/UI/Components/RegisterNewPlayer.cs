@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Golf.Characters.Players;
 
 namespace Golf.UI.Components
 {
     public class RegisterNewPlayer
     {
+        private string playerName;
+        PlayerManager playerManager = new PlayerManager();
         public void GetNewPlayerData()
         {
             Console.WriteLine("Player Name: ");
-            Console.ReadLine();
+            playerName = Console.ReadLine();
+
+            playerManager.AddPlayer(playerName);
         }
     }
 }

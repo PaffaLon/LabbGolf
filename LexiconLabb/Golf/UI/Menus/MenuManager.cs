@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using Golf.Menus.Content;
+using Golf.UI.Menus.Content;
 
 namespace Golf.UI.Menus
 {

@@ -6,7 +6,7 @@ namespace Golf.Characters
 {
     public class Character
     {
-        string Name { get; set; }
-        int Strength { get; set; }   
+        public string Name { get; set; }
+        public int Strength { get; set; }   
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using Golf.Menus;
+using Golf.UI.Menus;
 
 namespace Golf
 {

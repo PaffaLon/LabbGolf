@@ -16,5 +16,11 @@ namespace Golf.UI.Components
 
             playerManager.AddPlayer(playerName);
         }
+
+        public string PrintNewPlayrtEntryTxt()
+        {
+            Console.WriteLine("Enter name: ");
+            Console.ReadLine();
+        }
     }
 }

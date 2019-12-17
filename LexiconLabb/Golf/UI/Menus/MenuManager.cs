@@ -9,7 +9,7 @@ namespace Golf.UI.Menus
     class MenuManager
     {
         MainMenu mainMenu = new MainMenu();
-        CharacterCreation characterCreation = new CharacterCreation();
+        CharacterCreationMenu characterCreationMenu = new CharacterCreationMenu();
 
         private enum ApplicationMenus{
             SplashMenu,
@@ -38,7 +38,9 @@ namespace Golf.UI.Menus
             }
             if(ActiveApplicationMenu == (int)ApplicationMenus.CharacterCreation)
             {
-                
+                characterCreationMenu.Content();
+                foreach (var item in characterCreationMenu.GetComponents)
+                    characterCreationMenu.Elements.Add(item);
             }
             PrintMenuContent();
             MenuNavigation();
@@ -47,9 +49,9 @@ namespace Golf.UI.Menus
         {
             Console.Clear();
             if(ActiveApplicationMenu == (int)ApplicationMenus.SplashMenu)
-            {
+
                 CenterText();
-            }
+            
             else if(ActiveApplicationMenu == (int)ApplicationMenus.LoadGame)
             {
                 //To do
@@ -57,6 +59,10 @@ namespace Golf.UI.Menus
             else if(ActiveApplicationMenu == (int)ApplicationMenus.ScoreBoardMenu)
             {
                 //To do
+            }
+            else if(ActiveApplicationMenu == (int)ApplicationMenus.CharacterCreation)
+            {
+                CenterText();
             }
         }
         /// <summary>
@@ -107,7 +113,18 @@ namespace Golf.UI.Menus
             }
             if(ActiveApplicationMenu == (int)ApplicationMenus.CharacterCreation)
             {
-                
+                if(cki.Key.GetHashCode() == 13)
+                {
+                    string _playerName;
+                    //To Do:
+                    //  * Set Cursor Position, to after displayMessage.
+                    _playerName = characterCreationMenu.GetPlayerName();
+                    //To Do:
+                    //  * Call the proper class & metod to create a new player object,
+                    //      for storing the new player name.
+                    //  * Close menu.
+                    //  * Launch toturial level.
+                }
             }
             GetMenu();
         }
@@ -116,6 +133,13 @@ namespace Golf.UI.Menus
             int col = Console.WindowHeight / Console.WindowHeight + 1;
             switch (ActiveApplicationMenu)
             {
+                case (int)ApplicationMenus.CharacterCreation:
+                    foreach (var item in characterCreationMenu.Elements)
+                    {
+                        Console.SetCursorPosition((Console.WindowWidth - item.Length) / 2, Console.WindowHeight / 2 - 6 + col++);
+                        Console.Write(item + Environment.NewLine);
+                    }
+                    break;
                 default:
                     foreach (var item in mainMenu.Elements)
                     {
@@ -125,6 +149,11 @@ namespace Golf.UI.Menus
                     break;
             }
         }
+
+        /// <summary>
+        /// Empties the stored content of the list
+        /// to prevent data overflow, data conflict, data coruption & memory loss.
+        /// </summary>
         private void ClearMenuElements()
         {
             if (Console.CursorVisible == true)
@@ -132,6 +161,9 @@ namespace Golf.UI.Menus
 
             if (mainMenu.Elements != null)
                 mainMenu.Elements.Clear();
+
+            if (characterCreationMenu.Elements != null)
+                characterCreationMenu.Elements.Clear();
         }
     }
 }

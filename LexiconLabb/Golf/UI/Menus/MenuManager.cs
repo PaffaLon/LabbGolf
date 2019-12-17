@@ -6,7 +6,7 @@ using Golf.UI.Menus.Content;
 
 namespace Golf.UI.Menus
 {
-    class MenuManager
+    public class MenuManager
     {
         MainMenu mainMenu = new MainMenu();
         CharacterCreationMenu characterCreationMenu = new CharacterCreationMenu();

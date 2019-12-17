@@ -33,5 +33,19 @@ namespace Golf.Logic.Stages.Levels
             }
         }
 
+        public void SpawnObjects()
+        {
+
+        }
+
+        public void UpdateObjetPostion()
+        {
+
+        }
+
+        public void CurrentObjectPosition()
+        {
+
+        }
     }
 }

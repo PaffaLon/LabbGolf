@@ -11,9 +11,14 @@ namespace Golf.Engine
     public class AppRuntime
     {
         private bool Running { get; set; }
-        AppRuntime()
+        public AppRuntime()
         {
             Running = true;
+        }
+
+        ~AppRuntime()
+        {
+
         }
 
         public void RunTime()
@@ -22,6 +27,11 @@ namespace Golf.Engine
             {
                 
             }
+        }
+
+        private void GetUserAppActivity()
+        {
+
         }
     }
 }

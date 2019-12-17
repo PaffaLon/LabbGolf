@@ -38,12 +38,12 @@ namespace Golf.Logic.Stages.Levels
 
         }
 
-        public void UpdateObjetPostion()
+        public void UpdateObjetPostion(object entity, int posX, int posY )
         {
-
+            
         }
 
-        public void CurrentObjectPosition()
+        public void CurrentObjectPosition(object entity, int posX, int posY)
         {
 
         }

@@ -9,11 +9,13 @@ namespace Golf.UI.Menus
     class MenuManager
     {
         MainMenu mainMenu = new MainMenu();
+        CharacterCreation characterCreation = new CharacterCreation();
 
         private enum ApplicationMenus{
             SplashMenu,
             LoadGame,
             ScoreBoardMenu,
+            CharacterCreation
         }
         private int ActiveApplicationMenu { get; set; }
         public MenuManager()
@@ -21,6 +23,10 @@ namespace Golf.UI.Menus
             ActiveApplicationMenu = (int)ApplicationMenus.SplashMenu;
             mainMenu.Button = (int)MainMenu.Buttons.Play;
         }
+
+        /// <summary>
+        /// Requests the needed menu infomation from the respective menu componnent.
+        /// </summary>
         public void GetMenu()
         {
             ClearMenuElements();
@@ -29,6 +35,10 @@ namespace Golf.UI.Menus
                 mainMenu.Content(mainMenu.Button);
                 foreach (var item in mainMenu.GetMenuItems)
                     mainMenu.Elements.Add(item);
+            }
+            if(ActiveApplicationMenu == (int)ApplicationMenus.CharacterCreation)
+            {
+                
             }
             PrintMenuContent();
             MenuNavigation();
@@ -49,6 +59,12 @@ namespace Golf.UI.Menus
                 //To do
             }
         }
+        /// <summary>
+        /// Make it possible for the user to interact and navigate with the applications menues.
+        /// Pressing a arrow key results in one behavior.
+        /// Pressing the enter key results in one behavior.
+        /// This allows the user to reach a deeper level in the application in a logical manner.
+        /// </summary>
         private void MenuNavigation()
         {
             ConsoleKeyInfo cki;
@@ -70,9 +86,7 @@ namespace Golf.UI.Menus
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Play)
                 {
-                    Console.Clear();
-                    Console.WriteLine("The Scoreboard has not jet been implemented.");
-                    Thread.Sleep(1000);
+                    ActiveApplicationMenu = (int)ApplicationMenus.CharacterCreation;
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Load)
                 {
@@ -90,6 +104,10 @@ namespace Golf.UI.Menus
                 {
                     Environment.Exit(0);
                 }
+            }
+            if(ActiveApplicationMenu == (int)ApplicationMenus.CharacterCreation)
+            {
+                
             }
             GetMenu();
         }

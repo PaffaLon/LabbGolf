@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using Golf.UI.Menus;
 
 namespace Golf.Engine
@@ -36,8 +37,17 @@ namespace Golf.Engine
         {
             while(Running == true)
             {
-                menuManager.GetMenu();
+
             }
+        }
+
+        public void RunAppMenu()
+        {
+            menuManager.GetMenu();
+        }
+        public void RunLevel()
+        {
+
         }
 
         private void GetUserAppActivity()

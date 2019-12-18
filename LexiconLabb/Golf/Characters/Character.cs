@@ -8,5 +8,7 @@ namespace Golf.Characters
     {
         public string Name { get; set; }
         public int Strength { get; set; }   
+        public int ID { get; set; }
+        private int CharacterID { get; set; }
     }
 }

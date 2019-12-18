@@ -14,7 +14,10 @@ namespace Golf.Characters.Players
         {
             MinSwingStrength = 1;
             MaxSwingStrength = 20;
-
+        }
+        public Player(string playerName)
+        {
+            this.Name = playerName;
         }
     }
 }

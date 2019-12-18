@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using Golf.UI.Menus.Content;
+using Golf.Characters.Players;
 
 namespace Golf.UI.Menus
 {
@@ -10,6 +11,7 @@ namespace Golf.UI.Menus
     {
         MainMenu mainMenu = new MainMenu();
         CharacterCreationMenu characterCreationMenu = new CharacterCreationMenu();
+        PlayerManager playerManager = new PlayerManager();
 
         private enum ApplicationMenus{
             SplashMenu,
@@ -49,7 +51,6 @@ namespace Golf.UI.Menus
         {
             Console.Clear();
             if(ActiveApplicationMenu == (int)ApplicationMenus.SplashMenu)
-
                 CenterText();
             
             else if(ActiveApplicationMenu == (int)ApplicationMenus.LoadGame)
@@ -65,6 +66,7 @@ namespace Golf.UI.Menus
                 CenterText();
             }
         }
+        
         /// <summary>
         /// Make it possible for the user to interact and navigate with the applications menues.
         /// Pressing a arrow key results in one behavior.
@@ -120,8 +122,9 @@ namespace Golf.UI.Menus
                     //  * Set Cursor Position, to after displayMessage.
                     _playerName = characterCreationMenu.GetPlayerName();
                     //To Do:
-                    //  * Call the proper class & metod to create a new player object,
-                    //      for storing the new player name.
+                    Player player = new Player(_playerName);
+                    playerManager.AddPlayer(player);
+                    
                     //  * Close menu.
                     //  * Launch toturial level.
                 }
@@ -137,7 +140,7 @@ namespace Golf.UI.Menus
                     foreach (var item in characterCreationMenu.Elements)
                     {
                         Console.SetCursorPosition((Console.WindowWidth - item.Length) / 2, Console.WindowHeight / 2 - 6 + col++);
-                        Console.Write(item + Environment.NewLine);
+                        Console.Write(item);
                     }
                     break;
                 default:

@@ -13,13 +13,14 @@ namespace Golf.Engine
     public class AppRuntime
     {
 
-        private enum App{
+        private enum App {
             RunMenuManager,
             RunLevelManger,
             RunPlayerManager
         }
         private int CodeRun { get; set; }
         private bool Running { get; set; }
+        private int AppMenu { get; set; }
 
         MenuManager menuManager = new MenuManager();
         public AppRuntime()
@@ -35,15 +36,23 @@ namespace Golf.Engine
 
         public void RunTime()
         {
+            AppStarUp();
             while(Running == true)
             {
-
+                menuManager.GetMenu(AppMenu);
+                
             }
+        }
+
+        //Ses the default values of the applications refferences.
+        //Runs filepath tests.
+        private void AppStarUp()
+        {
+            AppMenu = (int)MenuManager.ApplicationMenus.StartMenu;
         }
 
         public void RunAppMenu()
         {
-            menuManager.GetMenu();
         }
         public void RunLevel()
         {

@@ -13,8 +13,8 @@ namespace Golf.UI.Menus
         CharacterCreationMenu characterCreationMenu = new CharacterCreationMenu();
         PlayerManager playerManager = new PlayerManager();
 
-        private enum ApplicationMenus{
-            SplashMenu,
+        public enum ApplicationMenus{
+            StartMenu,
             LoadGame,
             ScoreBoardMenu,
             CharacterCreation
@@ -22,23 +22,23 @@ namespace Golf.UI.Menus
         private int ActiveApplicationMenu { get; set; }
         public MenuManager()
         {
-            ActiveApplicationMenu = (int)ApplicationMenus.SplashMenu;
+            ActiveApplicationMenu = (int)ApplicationMenus.StartMenu;
             mainMenu.Button = (int)MainMenu.Buttons.Play;
         }
 
         /// <summary>
         /// Requests the needed menu infomation from the respective menu componnent.
         /// </summary>
-        public void GetMenu()
+        public int GetMenu(int value)
         {
             ClearMenuElements();
-            if(ActiveApplicationMenu == (int)ApplicationMenus.SplashMenu)
+            if(value == (int)ApplicationMenus.StartMenu)
             {
                 mainMenu.Content(mainMenu.Button);
                 foreach (var item in mainMenu.GetMenuItems)
                     mainMenu.Elements.Add(item);
             }
-            if(ActiveApplicationMenu == (int)ApplicationMenus.CharacterCreation)
+            if(value == (int)ApplicationMenus.CharacterCreation)
             {
                 characterCreationMenu.Content();
                 foreach (var item in characterCreationMenu.GetComponents)
@@ -46,11 +46,12 @@ namespace Golf.UI.Menus
             }
             PrintMenuContent();
             MenuNavigation();
+            return value;
         }
         private void PrintMenuContent()
         {
             Console.Clear();
-            if(ActiveApplicationMenu == (int)ApplicationMenus.SplashMenu)
+            if(ActiveApplicationMenu == (int)ApplicationMenus.StartMenu)
                 CenterText();
             
             else if(ActiveApplicationMenu == (int)ApplicationMenus.LoadGame)
@@ -78,7 +79,7 @@ namespace Golf.UI.Menus
             ConsoleKeyInfo cki;
             cki = Console.ReadKey();
 
-            if(ActiveApplicationMenu == (int)ApplicationMenus.SplashMenu)
+            if(ActiveApplicationMenu == (int)ApplicationMenus.StartMenu)
             {
                 if(cki.Key.GetHashCode() == 38)
                 {
@@ -129,7 +130,6 @@ namespace Golf.UI.Menus
                     //  * Launch toturial level.
                 }
             }
-            GetMenu();
         }
         private void CenterText()
         {

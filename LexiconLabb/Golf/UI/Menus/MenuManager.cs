@@ -50,18 +50,10 @@ namespace Golf.UI.Menus
             PrintMenuContent();
             MenuNavigation(ref running);
 
-            var momo = Tuple.Create(AppMenu: ActiveAppMenu, y: running);
-            //var pogo = (AppMenu: ActiveAppMenu, BrakeRunTime: running);
-
-
-
-
-
+            var momo = Tuple.Create(item1: ActiveAppMenu, item2: running);
             Debug.Print("GetMenu running: " + running.ToString());
             Debug.Print("-.-.-.-.-.-");
-
-
-            //return ;
+            return momo;
         }
 
         private void PrintMenuContent()

@@ -37,11 +37,11 @@ namespace Golf.Engine
         public void RunTime()
         {
             AppStarUp();
-            var pogo = (AppMenuT: AppMenu, BrakeRunTime: Running);
+            //var pogo = (AppMenuT: AppMenu, BrakeRunTime: Running);
             while (Running == true)
             {
-                (pogo.AppMenuT, pogo.BrakeRunTime) = menuManager.GetMenu(Running);
-                //menuManager.GetMenu(AppMenu, Running);
+                (AppMenu, Running) = menuManager.GetMenu(Running);
+                //menuManager.GetMenu(Running);
                 //Check where the user are in the program.
                 switch (AppMenu)
                 {

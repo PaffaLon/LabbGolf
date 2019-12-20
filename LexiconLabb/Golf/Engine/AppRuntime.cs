@@ -37,11 +37,25 @@ namespace Golf.Engine
         public void RunTime()
         {
             AppStarUp();
-            while(Running == true)
+            while (Running == true)
             {
-                menuManager.GetMenu(AppMenu);
-                
+                Running = menuManager.GetMenu(Running);
+                //Check where the user are in the program.
+                switch (AppMenu)
+                {
+                    case (int)MenuManager.ApplicationMenus.CharacterCreation:
+                        break;
+                    case (int)MenuManager.ApplicationMenus.LoadGame:
+                        break;
+                    case (int)MenuManager.ApplicationMenus.ScoreBoardMenu:
+                        break;
+
+                    //(int)MenuManager.ApplicationMenus.StartMenu;
+                    default:
+                        break;
+                }
             }
+            Environment.Exit(0);
         }
 
         //Ses the default values of the applications refferences.

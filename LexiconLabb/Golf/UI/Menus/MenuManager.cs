@@ -4,6 +4,8 @@ using System.Text;
 using System.Threading;
 using Golf.UI.Menus.Content;
 using Golf.Characters.Players;
+using Golf.Engine;
+using System.Diagnostics;
 
 namespace Golf.UI.Menus
 {
@@ -19,50 +21,57 @@ namespace Golf.UI.Menus
             ScoreBoardMenu,
             CharacterCreation
         }
-        private int ActiveApplicationMenu { get; set; }
+
+        private int ActiveAppMenu { get; set; }
         public MenuManager()
         {
-            ActiveApplicationMenu = (int)ApplicationMenus.StartMenu;
+            ActiveAppMenu = (int)ApplicationMenus.StartMenu;
             mainMenu.Button = (int)MainMenu.Buttons.Play;
         }
 
         /// <summary>
         /// Requests the needed menu infomation from the respective menu componnent.
         /// </summary>
-        public int GetMenu(int value)
+        public bool GetMenu(bool running)
         {
             ClearMenuElements();
-            if(value == (int)ApplicationMenus.StartMenu)
+            if(ActiveAppMenu == (int)ApplicationMenus.StartMenu)
             {
                 mainMenu.Content(mainMenu.Button);
                 foreach (var item in mainMenu.GetMenuItems)
                     mainMenu.Elements.Add(item);
             }
-            if(value == (int)ApplicationMenus.CharacterCreation)
+            if(ActiveAppMenu == (int)ApplicationMenus.CharacterCreation)
             {
                 characterCreationMenu.Content();
                 foreach (var item in characterCreationMenu.GetComponents)
                     characterCreationMenu.Elements.Add(item);
             }
             PrintMenuContent();
-            MenuNavigation();
-            return value;
+            running = MenuNavigation(running);
+
+            var party = (AppMenu: ActiveAppMenu, BrakeRunTime: running);
+            Debug.Print("GetMenu running: " + running.ToString());
+            Debug.Print("-.-.-.-.-.-");
+            return (party.AppMenu, party.BrakeRunTime);
+            
+            //return running; 
         }
         private void PrintMenuContent()
         {
             Console.Clear();
-            if(ActiveApplicationMenu == (int)ApplicationMenus.StartMenu)
+            if(ActiveAppMenu == (int)ApplicationMenus.StartMenu)
                 CenterText();
             
-            else if(ActiveApplicationMenu == (int)ApplicationMenus.LoadGame)
+            else if(ActiveAppMenu == (int)ApplicationMenus.LoadGame)
             {
                 //To do
             }
-            else if(ActiveApplicationMenu == (int)ApplicationMenus.ScoreBoardMenu)
+            else if(ActiveAppMenu == (int)ApplicationMenus.ScoreBoardMenu)
             {
                 //To do
             }
-            else if(ActiveApplicationMenu == (int)ApplicationMenus.CharacterCreation)
+            else if(ActiveAppMenu == (int)ApplicationMenus.CharacterCreation)
             {
                 CenterText();
             }
@@ -74,12 +83,12 @@ namespace Golf.UI.Menus
         /// Pressing the enter key results in one behavior.
         /// This allows the user to reach a deeper level in the application in a logical manner.
         /// </summary>
-        private void MenuNavigation()
+        private bool MenuNavigation(bool running)
         {
             ConsoleKeyInfo cki;
             cki = Console.ReadKey();
 
-            if(ActiveApplicationMenu == (int)ApplicationMenus.StartMenu)
+            if(ActiveAppMenu == (int)ApplicationMenus.StartMenu)
             {
                 if(cki.Key.GetHashCode() == 38)
                 {
@@ -95,7 +104,7 @@ namespace Golf.UI.Menus
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Play)
                 {
-                    ActiveApplicationMenu = (int)ApplicationMenus.CharacterCreation;
+                    ActiveAppMenu = (int)ApplicationMenus.CharacterCreation;
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Load)
                 {
@@ -111,10 +120,15 @@ namespace Golf.UI.Menus
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Exit)
                 {
-                    Environment.Exit(0);
+                    /*
+                    AppRuntime appRuntime = new AppRuntime();
+                    appRuntime.Running = false;
+                    */
+                    running = false;
+                    Debug.Print("Expected false: " + running.ToString());
                 }
             }
-            if(ActiveApplicationMenu == (int)ApplicationMenus.CharacterCreation)
+            if(ActiveAppMenu == (int)ApplicationMenus.CharacterCreation)
             {
                 if(cki.Key.GetHashCode() == 13)
                 {
@@ -130,11 +144,14 @@ namespace Golf.UI.Menus
                     //  * Launch toturial level.
                 }
             }
+            //-END: of IF statments-\\
+            Debug.Print("return running from NAV: " + running.ToString());
+            return running;
         }
         private void CenterText()
         {
             int col = Console.WindowHeight / Console.WindowHeight + 1;
-            switch (ActiveApplicationMenu)
+            switch (ActiveAppMenu)
             {
                 case (int)ApplicationMenus.CharacterCreation:
                     foreach (var item in characterCreationMenu.Elements)

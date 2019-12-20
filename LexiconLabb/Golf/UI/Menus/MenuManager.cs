@@ -32,7 +32,7 @@ namespace Golf.UI.Menus
         /// <summary>
         /// Requests the needed menu infomation from the respective menu componnent.
         /// </summary>
-        public bool GetMenu(bool running)
+        public Tuple<int,bool> GetMenu(bool running)
         {
             ClearMenuElements();
             if(ActiveAppMenu == (int)ApplicationMenus.StartMenu)
@@ -48,15 +48,22 @@ namespace Golf.UI.Menus
                     characterCreationMenu.Elements.Add(item);
             }
             PrintMenuContent();
-            running = MenuNavigation(running);
+            MenuNavigation(ref running);
 
-            var party = (AppMenu: ActiveAppMenu, BrakeRunTime: running);
+            var momo = Tuple.Create(AppMenu: ActiveAppMenu, y: running);
+            //var pogo = (AppMenu: ActiveAppMenu, BrakeRunTime: running);
+
+
+
+
+
             Debug.Print("GetMenu running: " + running.ToString());
             Debug.Print("-.-.-.-.-.-");
-            return (party.AppMenu, party.BrakeRunTime);
-            
-            //return running; 
+
+
+            //return ;
         }
+
         private void PrintMenuContent()
         {
             Console.Clear();
@@ -83,7 +90,7 @@ namespace Golf.UI.Menus
         /// Pressing the enter key results in one behavior.
         /// This allows the user to reach a deeper level in the application in a logical manner.
         /// </summary>
-        private bool MenuNavigation(bool running)
+        private bool MenuNavigation(ref bool running)
         {
             ConsoleKeyInfo cki;
             cki = Console.ReadKey();

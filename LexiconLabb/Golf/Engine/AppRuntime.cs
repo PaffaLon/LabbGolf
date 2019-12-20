@@ -37,9 +37,11 @@ namespace Golf.Engine
         public void RunTime()
         {
             AppStarUp();
+            var pogo = (AppMenuT: AppMenu, BrakeRunTime: Running);
             while (Running == true)
             {
-                Running = menuManager.GetMenu(Running);
+                (pogo.AppMenuT, pogo.BrakeRunTime) = menuManager.GetMenu(Running);
+                //menuManager.GetMenu(AppMenu, Running);
                 //Check where the user are in the program.
                 switch (AppMenu)
                 {
@@ -55,7 +57,7 @@ namespace Golf.Engine
                         break;
                 }
             }
-            Environment.Exit(0);
+            AppShutDown();
         }
 
         //Ses the default values of the applications refferences.
@@ -76,6 +78,12 @@ namespace Golf.Engine
         private void GetUserAppActivity()
         {
 
+        }
+
+        //Shuts Down Appllication.
+        private static void AppShutDown()
+        {
+            Environment.Exit(0);
         }
     }
 }

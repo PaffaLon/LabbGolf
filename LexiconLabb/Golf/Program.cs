@@ -1,6 +1,4 @@
-﻿using System;
-using Golf.UI.Menus;
-using Golf.Engine;
+﻿using Golf.Engine;
 
 namespace Golf
 {

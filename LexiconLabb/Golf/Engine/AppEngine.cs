@@ -20,7 +20,7 @@ namespace Golf.Engine
         }
         private int CodeRun { get; set; }
         private bool Running { get; set; }
-        private int AppMenu { get; set; }
+        private int FeatureRequst { get; set; }//Thinking about replacing the property with an object as request refference.
 
         MenuManager menuManager = new MenuManager();
         public AppEngine()
@@ -42,7 +42,7 @@ namespace Golf.Engine
             {
                 //menuManager.GetMenu(Running);
                 //Check where the user are in the program.
-                switch (AppMenu)
+                switch (FeatureRequst)
                 {
                     case (int)MenuManager.ApplicationMenus.CharacterCreation:
                         break;
@@ -53,7 +53,7 @@ namespace Golf.Engine
 
                     //(int)MenuManager.ApplicationMenus.StartMenu;
                     default:
-                            (AppMenu, Running) = menuManager.GetMenu(Running);
+                            (FeatureRequst, Running) = menuManager.GetMenu(Running);
                         break;
                 }
             }
@@ -64,7 +64,7 @@ namespace Golf.Engine
         //Runs filepath tests.
         private void AppStarUp()
         {
-            AppMenu = (int)MenuManager.ApplicationMenus.StartMenu;
+            FeatureRequst = (int)MenuManager.ApplicationMenus.StartMenu;
         }
 
         public void RunAppMenu()

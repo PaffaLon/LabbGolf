@@ -13,5 +13,11 @@ namespace Golf.UI.Forms
         {
             Elements = new List<string>();
         }
+
+        public void Content()
+        {
+            string[] labels = new string[0];
+            labels[0] = ("Player name: ");
+        }
     }
 }

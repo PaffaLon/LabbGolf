@@ -14,7 +14,7 @@ namespace Golf
             */
 
             /***    The Engine is still in an experimental mode.    ****/
-            AppRuntime appRuntime = new AppRuntime();
+            AppEngine appRuntime = new AppEngine();
             appRuntime.RunTime();
         }
     }

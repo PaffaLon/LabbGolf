@@ -72,7 +72,7 @@ namespace Golf.UI.Menus
             }
             else if(ActiveAppMenu == (int)ApplicationMenus.CharacterCreation)
             {
-                CenterText();
+               
             }
         }
         
@@ -103,7 +103,7 @@ namespace Golf.UI.Menus
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Play)
                 {
-                    ActiveAppMenu = (int)ApplicationMenus.CharacterCreation;
+                    
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Load)
                 {

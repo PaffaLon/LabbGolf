@@ -10,7 +10,7 @@ namespace Golf.Engine
     /// The AppRuntime class determents where the user are located in the application.
     /// Which segemts of code to run, stand alone or simultatnious.
     /// </summary>
-    public class AppRuntime
+    public class AppEngine
     {
 
         private enum App {
@@ -23,13 +23,13 @@ namespace Golf.Engine
         private int AppMenu { get; set; }
 
         MenuManager menuManager = new MenuManager();
-        public AppRuntime()
+        public AppEngine()
         {
             Running = true;
             CodeRun = (int)App.RunMenuManager;
         }
 
-        ~AppRuntime()
+        ~AppEngine()
         {
 
         }

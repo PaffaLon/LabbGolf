@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using Golf.UI.Menus;
+using Golf.UI.Forms;
 
 namespace Golf.Engine
 {
@@ -13,20 +14,22 @@ namespace Golf.Engine
     public class AppEngine
     {
 
-        private enum App {
+        private enum Sequence {
             RunMenuManager,
+            RunPlayerManager,
             RunLevelManger,
-            RunPlayerManager
+            RunCharacterCreator
         }
         private int CodeRun { get; set; }
         private bool Running { get; set; }
         private int FeatureRequst { get; set; }//Thinking about replacing the property with an object as request refference.
 
         MenuManager menuManager = new MenuManager();
+        FormManager formManager = new FormManager();
         public AppEngine()
         {
             Running = true;
-            CodeRun = (int)App.RunMenuManager;
+            CodeRun = (int)Sequence.RunMenuManager;
         }
 
         ~AppEngine()
@@ -37,21 +40,18 @@ namespace Golf.Engine
         public void RunTime()
         {
             AppStarUp();
-            //var pogo = (AppMenuT: AppMenu, BrakeRunTime: Running);
             while (Running == true)
             {
-                //menuManager.GetMenu(Running);
                 //Check where the user are in the program.
                 switch (FeatureRequst)
                 {
-                    case (int)MenuManager.ApplicationMenus.CharacterCreation:
+                    case (int)Sequence.RunLevelManger:
                         break;
-                    case (int)MenuManager.ApplicationMenus.LoadGame:
+                    case (int)Sequence.RunPlayerManager:
                         break;
-                    case (int)MenuManager.ApplicationMenus.ScoreBoardMenu:
+                    case (int)Sequence.RunCharacterCreator:
+                        (FeatureRequst) = formManager.GetForm(FeatureRequst);
                         break;
-
-                    //(int)MenuManager.ApplicationMenus.StartMenu;
                     default:
                             (FeatureRequst, Running) = menuManager.GetMenu(Running);
                         break;
@@ -64,7 +64,7 @@ namespace Golf.Engine
         //Runs filepath tests.
         private void AppStarUp()
         {
-            FeatureRequst = (int)MenuManager.ApplicationMenus.StartMenu;
+            FeatureRequst = (int)Sequence.RunMenuManager;
         }
 
         public void RunAppMenu()

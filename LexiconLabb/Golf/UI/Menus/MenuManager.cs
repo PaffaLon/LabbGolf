@@ -16,9 +16,7 @@ namespace Golf.UI.Menus
 
         public enum ApplicationMenus{
             StartMenu,
-            LoadGame,
-            ScoreBoardMenu,
-            CharacterCreation
+            InGameMenu
         }
 
         private int ActiveAppMenu { get; set; }
@@ -40,10 +38,6 @@ namespace Golf.UI.Menus
                 foreach (var item in mainMenu.GetMenuItems)
                     mainMenu.Elements.Add(item);
             }
-            if(ActiveAppMenu == (int)ApplicationMenus.CharacterCreation)
-            {
-
-            }
             PrintMenuContent();
             MenuNavigation(ref running);
 
@@ -58,19 +52,6 @@ namespace Golf.UI.Menus
             Console.Clear();
             if(ActiveAppMenu == (int)ApplicationMenus.StartMenu)
                 CenterText();
-            
-            else if(ActiveAppMenu == (int)ApplicationMenus.LoadGame)
-            {
-                //To do
-            }
-            else if(ActiveAppMenu == (int)ApplicationMenus.ScoreBoardMenu)
-            {
-                //To do
-            }
-            else if(ActiveAppMenu == (int)ApplicationMenus.CharacterCreation)
-            {
-               
-            }
         }
         
         /// <summary>

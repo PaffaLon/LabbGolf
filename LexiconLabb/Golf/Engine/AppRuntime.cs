@@ -40,7 +40,6 @@ namespace Golf.Engine
             //var pogo = (AppMenuT: AppMenu, BrakeRunTime: Running);
             while (Running == true)
             {
-                (AppMenu, Running) = menuManager.GetMenu(Running);
                 //menuManager.GetMenu(Running);
                 //Check where the user are in the program.
                 switch (AppMenu)
@@ -54,6 +53,7 @@ namespace Golf.Engine
 
                     //(int)MenuManager.ApplicationMenus.StartMenu;
                     default:
+                            (AppMenu, Running) = menuManager.GetMenu(Running);
                         break;
                 }
             }

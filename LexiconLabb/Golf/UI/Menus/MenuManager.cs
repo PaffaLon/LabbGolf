@@ -12,7 +12,6 @@ namespace Golf.UI.Menus
     public class MenuManager
     {
         MainMenu mainMenu = new MainMenu();
-        CharacterCreationMenu characterCreationMenu = new CharacterCreationMenu();
         PlayerManager playerManager = new PlayerManager();
 
         public enum ApplicationMenus{
@@ -43,9 +42,7 @@ namespace Golf.UI.Menus
             }
             if(ActiveAppMenu == (int)ApplicationMenus.CharacterCreation)
             {
-                characterCreationMenu.Content();
-                foreach (var item in characterCreationMenu.GetComponents)
-                    characterCreationMenu.Elements.Add(item);
+
             }
             PrintMenuContent();
             MenuNavigation(ref running);
@@ -127,22 +124,7 @@ namespace Golf.UI.Menus
                     Debug.Print("Expected false: " + running.ToString());
                 }
             }
-            if(ActiveAppMenu == (int)ApplicationMenus.CharacterCreation)
-            {
-                if(cki.Key.GetHashCode() == 13)
-                {
-                    string _playerName;
-                    //To Do:
-                    //  * Set Cursor Position, to after displayMessage.
-                    _playerName = characterCreationMenu.GetPlayerName();
-                    //To Do:
-                    Player player = new Player(_playerName);
-                    playerManager.AddPlayer(player);
-                    
-                    //  * Close menu.
-                    //  * Launch toturial level.
-                }
-            }
+
             //-END: of IF statments-\\
             Debug.Print("return running from NAV: " + running.ToString());
             return running;
@@ -152,13 +134,7 @@ namespace Golf.UI.Menus
             int col = Console.WindowHeight / Console.WindowHeight + 1;
             switch (ActiveAppMenu)
             {
-                case (int)ApplicationMenus.CharacterCreation:
-                    foreach (var item in characterCreationMenu.Elements)
-                    {
-                        Console.SetCursorPosition((Console.WindowWidth - item.Length) / 2, Console.WindowHeight / 2 - 6 + col++);
-                        Console.Write(item);
-                    }
-                    break;
+
                 default:
                     foreach (var item in mainMenu.Elements)
                     {
@@ -180,9 +156,6 @@ namespace Golf.UI.Menus
 
             if (mainMenu.Elements != null)
                 mainMenu.Elements.Clear();
-
-            if (characterCreationMenu.Elements != null)
-                characterCreationMenu.Elements.Clear();
         }
     }
 }

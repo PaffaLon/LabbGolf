@@ -2,7 +2,7 @@
 
 namespace Golf.UI.Menus
 {
-    public class Menu
+    public class Menu : IUI_Base
     {
         public List<string> Elements { get; set; }
         public int Button { get; set; }

@@ -25,7 +25,7 @@ namespace Golf.UI.Forms
         {
             if (ActiveForm == (int)Forms.FormCharacterCreation)
             {
-
+                
             }
             if(ActiveForm == (int)Forms.FormScoreboard)
             {

@@ -4,7 +4,11 @@ using System.Text;
 
 namespace Golf.UI.Forms.Content
 {
-    class FormScoreboard
+    public class FormScoreboard
     {
+        public void GetScoreboard()
+        {
+
+        }
     }
 }

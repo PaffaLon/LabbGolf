@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
-using Golf.UI.Menus.Content;
-using Golf.Characters.Players;
-using Golf.Engine;
 using System.Diagnostics;
+using Golf.Engine;
+using Golf.UI.Menus.Content;
 
 namespace Golf.UI.Menus
 {
     public class MenuManager
     {
         MainMenu mainMenu = new MainMenu();
-        PlayerManager playerManager = new PlayerManager();
-
-        public enum ApplicationMenus{
+        private enum ApplicationMenus{
             StartMenu,
             InGameMenu
         }
@@ -38,6 +33,10 @@ namespace Golf.UI.Menus
                 foreach (var item in mainMenu.GetMenuItems)
                     mainMenu.Elements.Add(item);
             }
+            if(ActiveAppMenu == (int)ApplicationMenus.InGameMenu)
+            {
+
+            }
             PrintMenuContent();
             MenuNavigation(ref running);
 
@@ -60,7 +59,7 @@ namespace Golf.UI.Menus
         /// Pressing the enter key results in one behavior.
         /// This allows the user to reach a deeper level in the application in a logical manner.
         /// </summary>
-        private bool MenuNavigation(ref bool running)
+        private Tuple<bool, int> MenuNavigation(ref bool running)
         {
             ConsoleKeyInfo cki;
             cki = Console.ReadKey();
@@ -81,7 +80,7 @@ namespace Golf.UI.Menus
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Play)
                 {
-                    
+                    ActiveAppMenu = (int)AppEngine.Sequence.RunCharacterCreator;
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Load)
                 {
@@ -108,7 +107,8 @@ namespace Golf.UI.Menus
 
             //-END: of IF statments-\\
             Debug.Print("return running from NAV: " + running.ToString());
-            return running;
+            var tuple = Tuple.Create(item1: running, item2: ActiveAppMenu);
+            return tuple;
         }
         private void CenterText()
         {

@@ -14,22 +14,21 @@ namespace Golf.Engine
     public class AppEngine
     {
 
-        private enum Sequence {
+        public enum Sequence {
             RunMenuManager,
             RunPlayerManager,
             RunLevelManger,
             RunCharacterCreator
         }
-        private int CodeRun { get; set; }
         private bool Running { get; set; }
         private int FeatureRequst { get; set; }//Thinking about replacing the property with an object as request refference.
+        private int FeatureResive { get; set; }
 
         MenuManager menuManager = new MenuManager();
         FormManager formManager = new FormManager();
         public AppEngine()
         {
             Running = true;
-            CodeRun = (int)Sequence.RunMenuManager;
         }
 
         ~AppEngine()
@@ -50,7 +49,7 @@ namespace Golf.Engine
                     case (int)Sequence.RunPlayerManager:
                         break;
                     case (int)Sequence.RunCharacterCreator:
-                        (FeatureRequst) = formManager.GetForm(FeatureRequst);
+                            (FeatureRequst, FeatureResive) = formManager.GetForm(FeatureRequst);
                         break;
                     default:
                             (FeatureRequst, Running) = menuManager.GetMenu(Running);

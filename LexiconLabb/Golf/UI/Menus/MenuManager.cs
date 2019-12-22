@@ -15,6 +15,7 @@ namespace Golf.UI.Menus
         }
 
         private int ActiveAppMenu { get; set; }
+        private int FeatureSend { get; set; }
         public MenuManager()
         {
             ActiveAppMenu = (int)ApplicationMenus.StartMenu;
@@ -40,7 +41,7 @@ namespace Golf.UI.Menus
             PrintMenuContent();
             MenuNavigation(ref running);
 
-            var momo = Tuple.Create(item1: ActiveAppMenu, item2: running);
+            var momo = Tuple.Create(item1: FeatureSend, item2: running);
             Debug.Print("GetMenu running: " + running.ToString());
             Debug.Print("-.-.-.-.-.-");
             return momo;
@@ -80,7 +81,7 @@ namespace Golf.UI.Menus
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Play)
                 {
-                    ActiveAppMenu = (int)AppEngine.Sequence.RunCharacterCreator;
+                    FeatureSend = (int)AppEngine.Sequence.RunCharacterCreator;
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Load)
                 {
@@ -93,21 +94,22 @@ namespace Golf.UI.Menus
                     Console.Clear();
                     Console.WriteLine("The Scoreboard has not jet been implemented.");
                     Thread.Sleep(1000);
+                    //FeatureSend = (int)AppEngine.Sequence.
                 }
                 else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Exit)
-                {
-                    /*
-                    AppRuntime appRuntime = new AppRuntime();
-                    appRuntime.Running = false;
-                    */
+                { 
                     running = false;
                     Debug.Print("Expected false: " + running.ToString());
                 }
             }
+            if(ActiveAppMenu == (int)ApplicationMenus.InGameMenu)
+            {
+
+            }
 
             //-END: of IF statments-\\
             Debug.Print("return running from NAV: " + running.ToString());
-            var tuple = Tuple.Create(item1: running, item2: ActiveAppMenu);
+            var tuple = Tuple.Create(item1: running, item2: FeatureSend);
             return tuple;
         }
         private void CenterText()

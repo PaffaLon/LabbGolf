@@ -29,7 +29,7 @@ namespace Golf.UI.Forms
         {
             if (ActiveForm == (int)Forms.FormCharacterCreation)
             {
-                FormCharacterCreation.Content();
+                FormCharacterCreation.Labels();
                 foreach (var item in FormCharacterCreation.getlabels)
                     FormCharacterCreation.Elements.Add(item);
             }

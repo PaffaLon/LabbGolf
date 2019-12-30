@@ -13,7 +13,6 @@ namespace Golf.Engine
     /// </summary>
     public class AppEngine
     {
-
         public enum Sequence {
             RunMenuManager,
             RunPlayerManager,
@@ -36,6 +35,13 @@ namespace Golf.Engine
 
         }
 
+        //Ses the default values of the applications refferences.
+        //Runs filepath tests.
+        private void AppStarUp()
+        {
+            FeatureRequst = (int)Sequence.RunMenuManager;
+        }
+
         public void RunTime()
         {
             AppStarUp();
@@ -55,28 +61,16 @@ namespace Golf.Engine
                             (FeatureRequst, Running) = menuManager.GetMenu(Running);
                         break;
                 }
+                UpdateRequest(FeatureRequst, FeatureResive);
             }
             AppShutDown();
         }
 
-        //Ses the default values of the applications refferences.
-        //Runs filepath tests.
-        private void AppStarUp()
+        private Tuple<int, int> UpdateRequest(int featureRequest, int FeatureResive)
         {
-            FeatureRequst = (int)Sequence.RunMenuManager;
-        }
-
-        public void RunAppMenu()
-        {
-        }
-        public void RunLevel()
-        {
-
-        }
-
-        private void GetUserAppActivity()
-        {
-
+            featureRequest = FeatureResive;
+            var tuple = Tuple.Create(item1: featureRequest, item2: FeatureResive);
+            return tuple;
         }
 
         //Shuts Down Appllication.

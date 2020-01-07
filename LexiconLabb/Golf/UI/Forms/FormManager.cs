@@ -7,33 +7,66 @@ namespace Golf.UI.Forms
 {
     public class FormManager
     {
-        public enum Forms
+        public enum AppForms
         {
             FormCharacterCreation,
             FormScoreboard
         }
+        static public List<string> GetAppForms { get; set; }
+        static public List<object> ObjGetAppForms { get; set; }
+        static public List<object> AccessToObjects { get; set; }
 
         public int ActiveForm { get; set; }
-        private int ActionRequest { get; set; }
-        private int NewSequence { get; set; }
         private int FeatureSend { get; set; }
 
         FormCharacterCreation FormCharacterCreation = new FormCharacterCreation();
         FormScoreboard formScoreboard = new FormScoreboard();
         public FormManager()
         {
+      
+        }
+
+        public List<object> GetFormObjects(List<object> list)
+        {
+            if (ObjGetAppForms == null)
+            {
+                ObjGetAppForms = new List<object>();
+                ObjGetAppForms.Add(FormCharacterCreation);
+                ObjGetAppForms.Add(formScoreboard);
+            }
+            else if(ObjGetAppForms != null)
+            {
+                AccessToObjects = list;
+            }
+
+            return ObjGetAppForms;
+        }
+
+        public List<string> GetFormEnumItems(List<object> list)
+        {
+            if (GetAppForms == null)
+            {
+                GetAppForms = new List<string>();
+                foreach (var item in Enum.GetValues(typeof(AppForms)))
+                {
+                    GetAppForms.Add(Convert.ToString(item));
+                }
+            }
+            return GetAppForms;
+
 
         }
 
+
         public Tuple<int, int> GetForm(int featureRequest)
         {
-            if (ActiveForm == (int)Forms.FormCharacterCreation)
+            if (ActiveForm == (int)AppForms.FormCharacterCreation)
             {
                 FormCharacterCreation.Labels();
                 foreach (var item in FormCharacterCreation.getlabels)
                     FormCharacterCreation.Elements.Add(item);
             }
-            if(ActiveForm == (int)Forms.FormScoreboard)
+            if(ActiveForm == (int)AppForms.FormScoreboard)
             {
 
             }
@@ -45,11 +78,11 @@ namespace Golf.UI.Forms
         private void PrintFormContent()
         {
             Console.Clear();
-            if(ActiveForm == (int)Forms.FormCharacterCreation)
+            if(ActiveForm == (int)AppForms.FormCharacterCreation)
             {
                 CenterOnScreen();
             }
-            if(ActiveForm == (int)Forms.FormScoreboard)
+            if(ActiveForm == (int)AppForms.FormScoreboard)
             {
                 
             }
@@ -74,7 +107,7 @@ namespace Golf.UI.Forms
             ConsoleKeyInfo cki;
             cki = Console.ReadKey();
 
-            if(ActiveForm == (int)Forms.FormCharacterCreation)
+            if(ActiveForm == (int)AppForms.FormCharacterCreation)
             {
                 if(cki.Key.GetHashCode() == 13)//Enter
                 {
@@ -88,7 +121,7 @@ namespace Golf.UI.Forms
                     // * Exit to previous menu.
                 }
             }
-            if(ActiveForm == (int)Forms.FormScoreboard)
+            if(ActiveForm == (int)AppForms.FormScoreboard)
             {
                 //To Do
                 // * Form Key Actions.

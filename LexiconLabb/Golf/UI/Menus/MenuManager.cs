@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Diagnostics;
 using Golf.Engine;
@@ -8,18 +9,62 @@ namespace Golf.UI.Menus
 {
     public class MenuManager
     {
-        MainMenu mainMenu = new MainMenu();
-        private enum ApplicationMenus{
+        private enum AppMenus
+        {
             StartMenu,
-            InGameMenu
+            InGameMenu,
+            LevelSelectorMenu
         }
 
+        static public List<object> ObjGetAppMenues { get; set; }
+        public List<object> AccessToObjects { get; set; }
+        
+        static public List<string> GetAppMenus { get; set; } 
+        public List<int> Access { get; set; }
+#region        
+        public object obj { get; set; }
         private int ActiveAppMenu { get; set; }
-        private int FeatureSend { get; set; }
+        private int FeatureRequest { get; set; }
+#endregion
+        StartMenu startMenu = new StartMenu();
         public MenuManager()
         {
-            ActiveAppMenu = (int)ApplicationMenus.StartMenu;
-            mainMenu.Button = (int)MainMenu.Buttons.Play;
+            obj = startMenu;
+            if (obj == startMenu)
+                Debug.Print("StartMenu");
+
+            ActiveAppMenu = (int)AppMenus.StartMenu;
+            startMenu.Button = (int)StartMenu.Buttons.Play;
+        }
+        
+        public List<object> GetMenuObjects(List<object> list)
+        {
+            Debug.Print("Hello");
+            ObjGetAppMenues = new List<object>();
+            if (ObjGetAppMenues == null)
+                ObjGetAppMenues.Add(startMenu);
+
+            else if (ObjGetAppMenues != null)
+            {
+                AccessToObjects = list;
+            }
+
+            ObjGetAppMenues.ForEach(el => Debug.Print("Objects in list: " + el.ToString()));
+            return ObjGetAppMenues;
+        }
+        public List<string> GetEnumItemNames(List<string> menusRequest)
+        {
+            if (GetAppMenus == null)
+            {
+                GetAppMenus = new List<string>();
+                foreach (var item in Enum.GetNames(typeof(AppMenus)))
+                {
+                    GetAppMenus.Add(Convert.ToString(item));
+                    //GetAppMenus.Add(Convert.ToInt32(item));
+                }
+            }
+            menusRequest = GetAppMenus;
+            return menusRequest;
         }
 
         /// <summary>
@@ -28,20 +73,20 @@ namespace Golf.UI.Menus
         public Tuple<int,bool> GetMenu(bool running)
         {
             ClearMenuElements();
-            if(ActiveAppMenu == (int)ApplicationMenus.StartMenu)
+            if(ActiveAppMenu == (int)AppMenus.StartMenu)
             {
-                mainMenu.Content(mainMenu.Button);
-                foreach (var item in mainMenu.GetMenuItems)
-                    mainMenu.Elements.Add(item);
+                startMenu.Content(startMenu.Button);
+                foreach (var item in startMenu.GetMenuItems)
+                    startMenu.Elements.Add(item);
             }
-            if(ActiveAppMenu == (int)ApplicationMenus.InGameMenu)
+            if(ActiveAppMenu == (int)AppMenus.InGameMenu)
             {
 
             }
             PrintMenuContent();
             MenuNavigation(ref running);
 
-            var momo = Tuple.Create(item1: FeatureSend, item2: running);
+            var momo = Tuple.Create(item1: FeatureRequest, item2: running);
             Debug.Print("GetMenu running: " + running.ToString());
             Debug.Print("-.-.-.-.-.-");
             return momo;
@@ -50,7 +95,7 @@ namespace Golf.UI.Menus
         private void PrintMenuContent()
         {
             Console.Clear();
-            if(ActiveAppMenu == (int)ApplicationMenus.StartMenu)
+            if(ActiveAppMenu == (int)AppMenus.StartMenu)
                 CenterText();
         }
         
@@ -65,51 +110,51 @@ namespace Golf.UI.Menus
             ConsoleKeyInfo cki;
             cki = Console.ReadKey();
 
-            if(ActiveAppMenu == (int)ApplicationMenus.StartMenu)
+            if(ActiveAppMenu == (int)AppMenus.StartMenu)
             {
                 if(cki.Key.GetHashCode() == 38)
                 {
-                    mainMenu.Button -= 1;
-                    if (mainMenu.Button < 0)
-                        mainMenu.Button = 0;
+                    startMenu.Button -= 1;
+                    if (startMenu.Button < 0)
+                        startMenu.Button = 0;
                 }
                 else if(cki.Key.GetHashCode() == 40)
                 {
-                    mainMenu.Button += 1;
-                    if (mainMenu.Button > 3)
-                        mainMenu.Button = 3;
+                    startMenu.Button += 1;
+                    if (startMenu.Button > 3)
+                        startMenu.Button = 3;
                 }
-                else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Play)
+                else if(cki.Key.GetHashCode() == 13 && startMenu.Button == (int)StartMenu.Buttons.Play)
                 {
-                    FeatureSend = (int)AppEngine.Sequence.RunCharacterCreator;
+                    FeatureRequest = (int)AppEngine.Sequence.RunCharacterCreator;
                 }
-                else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Load)
+                else if(cki.Key.GetHashCode() == 13 && startMenu.Button == (int)StartMenu.Buttons.Load)
                 {
                     Console.Clear();
                     Console.WriteLine("The Scoreboard has not jet been implemented.");
                     Thread.Sleep(1000);
                 }
-                else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Scoreboard)
+                else if(cki.Key.GetHashCode() == 13 && startMenu.Button == (int)StartMenu.Buttons.Scoreboard)
                 {
                     Console.Clear();
                     Console.WriteLine("The Scoreboard has not jet been implemented.");
                     Thread.Sleep(1000);
                     //FeatureSend = (int)AppEngine.Sequence.
                 }
-                else if(cki.Key.GetHashCode() == 13 && mainMenu.Button == (int)MainMenu.Buttons.Exit)
+                else if(cki.Key.GetHashCode() == 13 && startMenu.Button == (int)StartMenu.Buttons.Exit)
                 { 
                     running = false;
                     Debug.Print("Expected false: " + running.ToString());
                 }
             }
-            if(ActiveAppMenu == (int)ApplicationMenus.InGameMenu)
+            if(ActiveAppMenu == (int)AppMenus.InGameMenu)
             {
 
             }
 
             //-END: of IF statments-\\
             Debug.Print("return running from NAV: " + running.ToString());
-            var tuple = Tuple.Create(item1: running, item2: FeatureSend);
+            var tuple = Tuple.Create(item1: running, item2: FeatureRequest);
             return tuple;
         }
         private void CenterText()
@@ -119,7 +164,7 @@ namespace Golf.UI.Menus
             {
 
                 default:
-                    foreach (var item in mainMenu.Elements)
+                    foreach (var item in startMenu.Elements)
                     {
                         Console.SetCursorPosition((Console.WindowWidth - item.Length) / 2, Console.WindowHeight / 2 - 6 + col++);
                         Console.Write(item + Environment.NewLine);
@@ -137,8 +182,8 @@ namespace Golf.UI.Menus
             if (Console.CursorVisible == true)
                 Console.CursorVisible = false;
 
-            if (mainMenu.Elements != null)
-                mainMenu.Elements.Clear();
+            if (startMenu.Elements != null)
+                startMenu.Elements.Clear();
         }
     }
 }

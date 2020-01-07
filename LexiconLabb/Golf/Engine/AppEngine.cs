@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using Golf.UI.Menus;
 using Golf.UI.Forms;
+using System.Diagnostics;
 
 namespace Golf.Engine
 {
@@ -23,10 +24,24 @@ namespace Golf.Engine
         private int FeatureRequst { get; set; }//Thinking about replacing the property with an object as request refference.
         private int FeatureResive { get; set; }
 
+        static private List<string> AppFeatures { get; set; }
+        static private List<object> ObjAppFeatuers { get; set; }
+        private string AppFeature { get; set; }
+        private object Feature { get; set; }
+        public Predicate<object> StartMenu { get; }
+        public Predicate<object> CharacterCreationForm { get; }
+
+#region String Predicates
+        public Predicate<string> strStartMenu { get; }
+        public Predicate<string> strInGameMenu { get; }
+        public Predicate<string> strLevelSelectorMenu { get; }
+#endregion
+
         MenuManager menuManager = new MenuManager();
         FormManager formManager = new FormManager();
         public AppEngine()
         {
+            ObjAppFeatuers = new List<object>();
             Running = true;
         }
 
@@ -39,6 +54,38 @@ namespace Golf.Engine
         //Runs filepath tests.
         private void AppStarUp()
         {
+            ObjectApreach();
+            void ObjectApreach()
+            {
+                Debug.Print("Enterd: ObjectApreach.");
+                ObjAppFeatuers = menuManager.GetMenuObjects(ObjAppFeatuers);
+                Debug.Print("Objects in list: " + ObjAppFeatuers.Count.ToString());
+
+
+                ObjAppFeatuers.ForEach(el => Debug.Print("objects: " + el.ToString()));
+                /*
+                try
+                {
+                    if (Feature == ObjAppFeatuers.Find(StartMenu))
+                    {
+                        FeatureRequst = (int)Sequence.RunMenuManager;
+                    }
+                    if (Feature == ObjAppFeatuers.Find(CharacterCreationForm))
+                    {
+                        FeatureRequst = (int)Sequence.RunCharacterCreator;
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                */
+            }
+
+            void EnumItemAppreach()
+            {
+
+            }            
             FeatureRequst = (int)Sequence.RunMenuManager;
         }
 

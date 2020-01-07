@@ -28,13 +28,13 @@ namespace Golf.UI.Forms
 
         public List<object> GetFormObjects(List<object> list)
         {
-            if (ObjGetAppForms == null)
+            if (ObjGetAppForms.Count == 0)
             {
                 ObjGetAppForms = new List<object>();
                 ObjGetAppForms.Add(FormCharacterCreation);
                 ObjGetAppForms.Add(formScoreboard);
             }
-            else if(ObjGetAppForms != null)
+            else if(ObjGetAppForms.Count > 0)
             {
                 AccessToObjects = list;
             }

@@ -41,10 +41,10 @@ namespace Golf.UI.Menus
         {
             Debug.Print("Hello");
             ObjGetAppMenues = new List<object>();
-            if (ObjGetAppMenues == null)
+            if (ObjGetAppMenues.Count == 0)
                 ObjGetAppMenues.Add(startMenu);
 
-            else if (ObjGetAppMenues != null)
+            else if (ObjGetAppMenues.Count > 0)
             {
                 AccessToObjects = list;
             }

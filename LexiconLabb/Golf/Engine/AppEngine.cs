@@ -42,6 +42,7 @@ namespace Golf.Engine
         public AppEngine()
         {
             ObjAppFeatuers = new List<object>();
+            AppFeatures = new List<string>();
             Running = true;
         }
 
@@ -55,6 +56,7 @@ namespace Golf.Engine
         private void AppStarUp()
         {
             ObjectApreach();
+            //EnumItemAppreach();
             void ObjectApreach()
             {
                 Debug.Print("Enterd: ObjectApreach.");

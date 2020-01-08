@@ -15,7 +15,7 @@ namespace Golf.UI.Forms
         static public List<string> GetAppForms { get; set; }
         static public List<object> ObjGetAppForms { get; set; }
         static public List<object> AccessToObjects { get; set; }
-
+        
         public int ActiveForm { get; set; }
         private int FeatureSend { get; set; }
 
@@ -23,7 +23,7 @@ namespace Golf.UI.Forms
         FormScoreboard formScoreboard = new FormScoreboard();
         public FormManager()
         {
-      
+            ObjGetAppForms = new List<object>();
         }
 
         public List<object> GetFormObjects(List<object> list)
@@ -53,8 +53,6 @@ namespace Golf.UI.Forms
                 }
             }
             return GetAppForms;
-
-
         }
 
 

@@ -21,12 +21,13 @@ namespace Golf.UI.Menus
         
         static public List<string> GetAppMenus { get; set; } 
         public List<int> Access { get; set; }
-#region        
+        #region        
         public object obj { get; set; }
         private int ActiveAppMenu { get; set; }
         private int FeatureRequest { get; set; }
 #endregion
         StartMenu startMenu = new StartMenu();
+        
         public MenuManager()
         {
             obj = startMenu;

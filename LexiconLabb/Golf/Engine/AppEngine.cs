@@ -14,35 +14,29 @@ namespace Golf.Engine
     /// </summary>
     public class AppEngine
     {
-        public enum Sequence {
+        public enum Sequence
+        {
             RunMenuManager,
             RunPlayerManager,
             RunLevelManger,
             RunCharacterCreator
         }
         private bool Running { get; set; }
-        private int FeatureRequst { get; set; }//Thinking about replacing the property with an object as request refference.
+        private int RunLayer { get; set; }//Thinking about replacing the property with an object as request refference.
         private int FeatureResive { get; set; }
 
-        static private List<string> AppFeatures { get; set; }
+        static private List<string> AppEnumItems { get; set; }
         static private List<object> ObjAppFeatuers { get; set; }
         private string AppFeature { get; set; }
         private object Feature { get; set; }
-        public Predicate<object> StartMenu { get; }
-        public Predicate<object> CharacterCreationForm { get; }
-
-#region String Predicates
-        public Predicate<string> strStartMenu { get; }
-        public Predicate<string> strInGameMenu { get; }
-        public Predicate<string> strLevelSelectorMenu { get; }
-#endregion
 
         MenuManager menuManager = new MenuManager();
         FormManager formManager = new FormManager();
         public AppEngine()
         {
             ObjAppFeatuers = new List<object>();
-            AppFeatures = new List<string>();
+            AppEnumItems = new List<string>();
+
             Running = true;
         }
 
@@ -56,39 +50,31 @@ namespace Golf.Engine
         private void AppStarUp()
         {
             ObjectApreach();
-            //EnumItemAppreach();
+            EnumItemAppreach();
             void ObjectApreach()
             {
                 Debug.Print("Enterd: ObjectApreach.");
-                ObjAppFeatuers = menuManager.GetMenuObjects(ObjAppFeatuers);
+                ObjAppFeatuers.AddRange(menuManager.GetMenuObjects(ObjAppFeatuers));
+                ObjAppFeatuers.AddRange(formManager.GetFormObjects(ObjAppFeatuers));
                 Debug.Print("Objects in list: " + ObjAppFeatuers.Count.ToString());
 
 
                 ObjAppFeatuers.ForEach(el => Debug.Print("objects: " + el.ToString()));
-                /*
-                try
+
+                foreach (var item in ObjAppFeatuers)
                 {
-                    if (Feature == ObjAppFeatuers.Find(StartMenu))
-                    {
-                        FeatureRequst = (int)Sequence.RunMenuManager;
-                    }
-                    if (Feature == ObjAppFeatuers.Find(CharacterCreationForm))
-                    {
-                        FeatureRequst = (int)Sequence.RunCharacterCreator;
-                    }
+                    Debug.Print(item.ToString());
                 }
-                catch (Exception)
-                {
-                    throw;
-                }
-                */
+
             }
+        }
+        void EnumItemAppreach()
+        {
+            AppEnumItems.AddRange(menuManager.GetEnumItemNames(AppEnumItems));
+            AppEnumItems.ForEach(el => Debug.Print("Enums: " + el));
 
-            void EnumItemAppreach()
-            {
 
-            }            
-            FeatureRequst = (int)Sequence.RunMenuManager;
+            RunLayer = (int)Sequence.RunMenuManager;
         }
 
         public void RunTime()
@@ -97,20 +83,20 @@ namespace Golf.Engine
             while (Running == true)
             {
                 //Check where the user are in the program.
-                switch (FeatureRequst)
+                switch (RunLayer)
                 {
                     case (int)Sequence.RunLevelManger:
                         break;
                     case (int)Sequence.RunPlayerManager:
                         break;
                     case (int)Sequence.RunCharacterCreator:
-                            (FeatureRequst, FeatureResive) = formManager.GetForm(FeatureRequst);
+                        (RunLayer, FeatureResive) = formManager.GetForm(RunLayer);
                         break;
                     default:
-                            (FeatureRequst, Running) = menuManager.GetMenu(Running);
+                        (RunLayer, Running) = menuManager.GetMenu(Running);
                         break;
                 }
-                UpdateRequest(FeatureRequst, FeatureResive);
+                UpdateRequest(RunLayer, FeatureResive);
             }
             AppShutDown();
         }
@@ -128,4 +114,4 @@ namespace Golf.Engine
             Environment.Exit(0);
         }
     }
-}
+} 

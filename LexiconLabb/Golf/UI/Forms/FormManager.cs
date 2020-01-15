@@ -7,7 +7,7 @@ namespace Golf.UI.Forms
 {
     public class FormManager
     {
-        public enum AppForms
+        private enum AppForms
         {
             FormCharacterCreation,
             FormScoreboard

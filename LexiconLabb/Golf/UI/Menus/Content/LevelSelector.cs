@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Golf.UI.Menus.Content
 {
-    public class LevelSelectorMenu
+    public class LevelSelector
     {
         public void Content()
         {

@@ -4,11 +4,13 @@ namespace Golf.UI.Menus
 {
     interface IMenu
     {
-        void Content(int button);
-        enum Buttons { };
+        
     }
     public class Menu
     {
+        public string Name { get; set; }
+        public object Object { get; set; }
+        
         public List<string> Elements { get; set; }
         public int Button { get; set; }
 

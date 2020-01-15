@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -12,8 +13,31 @@ namespace Golf.Engine
     /// The AppRuntime class determents where the user are located in the application.
     /// Which segemts of code to run, stand alone or simultatnious.
     /// </summary>
-    public class AppEngine
+    interface IUserActionProtocol
     {
+        public object ActionRequest { get; set; }
+        public object ActionSend { get; set; }
+        
+    } 
+
+    public class AppEngine : IUserActionProtocol
+    {
+        private static Hashtable UserActions
+        {
+            get;
+            set;
+        }
+        public object ActionRequest { get; set; }
+        public object ActionSend { get; set; }
+
+        private void GetUserActions()
+        {
+            foreach (DictionaryEntry userAction in UserActions)
+            {
+
+            }
+        }
+
         public enum Sequence
         {
             RunMenuManager,
@@ -25,6 +49,8 @@ namespace Golf.Engine
         private int RunLayer { get; set; }//Thinking about replacing the property with an object as request refference.
         private int FeatureResive { get; set; }
 
+        
+
         static private List<string> AppEnumItems { get; set; }
         static private List<object> ObjAppFeatuers { get; set; }
         private string AppFeature { get; set; }
@@ -34,6 +60,7 @@ namespace Golf.Engine
         FormManager formManager = new FormManager();
         public AppEngine()
         {
+            UserActions = new Hashtable();
             ObjAppFeatuers = new List<object>();
             AppEnumItems = new List<string>();
 
@@ -93,6 +120,8 @@ namespace Golf.Engine
                         (RunLayer, FeatureResive) = formManager.GetForm(RunLayer);
                         break;
                     default:
+                        //Sending: MenuType, FormType, Running
+                        //Reseving: MenuType, FormType
                         (RunLayer, Running) = menuManager.GetMenu(Running);
                         break;
                 }

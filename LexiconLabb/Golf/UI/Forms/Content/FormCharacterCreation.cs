@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Golf.UI.Forms.Content
 {
-    public class FormCharacterCreation : Form
+    public class FormCharacterCreation : Form, IForm
     {
         public enum Buttons
         {
@@ -13,23 +13,27 @@ namespace Golf.UI.Forms.Content
             Exit
         }
         public string[] getlabels = new string[1];
-        public void Labels()
+
+        public FormCharacterCreation()
+        {
+            if (this.DefaultValuesSet == false)
+                SetDefaultValues();
+        }
+        private void SetDefaultValues()
+        {
+            if (this.DefaultValuesSet)
+                this.ID = ("LevelBrowser");
+
+            this.ActiveButton = (int)Buttons.Play;
+            this.DefaultValuesSet = true;
+        }
+
+        public void Content()
         {
             string[] labels = new string[0];
             labels[0] = ("Player name: ");
 
             getlabels[0] = labels[0];
-        }
-
-        private void ButtonPlay()
-        {
-            string lable = ("Play");
-            
-        }
-
-        private void Button()
-        {
-
         }
     }
 }

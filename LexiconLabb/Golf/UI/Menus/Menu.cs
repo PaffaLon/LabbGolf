@@ -4,19 +4,23 @@ namespace Golf.UI.Menus
 {
     interface IMenu
     {
-        
+        public enum Buttons { }
+        private void SetDefaultValues() { }
     }
     public class Menu
     {
-        public string Name { get; set; }
-        public object Object { get; set; }
+        public string ID { get; set; }
         
         public List<string> Elements { get; set; }
-        public int Button { get; set; }
+        public List<string> Labels { get; set; }
+        public bool DefaultValuesSet { get; set; }
+        
+        public int ActiveButton { get; set; }
 
         public Menu()
         {
             Elements = new List<string>();
+            Labels = new List<string>();
         }
     }
 }

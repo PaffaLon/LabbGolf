@@ -33,7 +33,7 @@ namespace Golf.UI.Menus
         private int FeatureRequest { get; set; }
 #endregion
         StartMenu startMenu = new StartMenu();
-        LevelSelector levelSelector = new LevelSelector();
+        LevelBrowser levelSelector = new LevelBrowser();
         
         public MenuManager()
         {
@@ -42,7 +42,7 @@ namespace Golf.UI.Menus
                 Debug.Print("StartMenu");
 
             ActiveAppMenu = (int)AppMenus.StartMenu;
-            startMenu.Button = (int)StartMenu.Buttons.Play;
+            startMenu.ActiveButton = (int)StartMenu.Buttons.Play;
         }
         
         private void GetUserActions()
@@ -88,9 +88,13 @@ namespace Golf.UI.Menus
             ClearMenuElements();
             if(ActiveAppMenu == (int)AppMenus.StartMenu)
             {
+                startMenu.Content(startMenu.ActiveButton);
+                
+                /*
                 startMenu.Content(startMenu.Button);
                 foreach (var item in startMenu.GetMenuItems)
                     startMenu.Elements.Add(item);
+                */
             }
             if(ActiveAppMenu == (int)AppMenus.InGameMenu)
             {
@@ -110,6 +114,9 @@ namespace Golf.UI.Menus
             Console.Clear();
             if(ActiveAppMenu == (int)AppMenus.StartMenu)
                 CenterText();
+
+            if (ActiveAppMenu == (int)AppMenus.LevelSelectorMenu);
+            if (ActiveAppMenu == (int)AppMenus.InGameMenu);
         }
         
         /// <summary>
@@ -127,34 +134,34 @@ namespace Golf.UI.Menus
             {
                 if(cki.Key.GetHashCode() == 38)
                 {
-                    startMenu.Button -= 1;
-                    if (startMenu.Button < 0)
-                        startMenu.Button = 0;
+                    startMenu.ActiveButton -= 1;
+                    if (startMenu.ActiveButton < 0)
+                        startMenu.ActiveButton = 0;
                 }
                 else if(cki.Key.GetHashCode() == 40)
                 {
-                    startMenu.Button += 1;
-                    if (startMenu.Button > 3)
-                        startMenu.Button = 3;
+                    startMenu.ActiveButton += 1;
+                    if (startMenu.ActiveButton > 3)
+                        startMenu.ActiveButton = 3;
                 }
-                else if(cki.Key.GetHashCode() == 13 && startMenu.Button == (int)StartMenu.Buttons.Play)
+                else if(cki.Key.GetHashCode() == 13 && startMenu.ActiveButton == (int)StartMenu.Buttons.Play)
                 {
                     FeatureRequest = (int)AppEngine.Sequence.RunCharacterCreator;
                 }
-                else if(cki.Key.GetHashCode() == 13 && startMenu.Button == (int)StartMenu.Buttons.Load)
+                else if(cki.Key.GetHashCode() == 13 && startMenu.ActiveButton == (int)StartMenu.Buttons.Load)
                 {
                     Console.Clear();
                     Console.WriteLine("The Scoreboard has not jet been implemented.");
                     Thread.Sleep(1000);
                 }
-                else if(cki.Key.GetHashCode() == 13 && startMenu.Button == (int)StartMenu.Buttons.Scoreboard)
+                else if(cki.Key.GetHashCode() == 13 && startMenu.ActiveButton == (int)StartMenu.Buttons.Scoreboard)
                 {
                     Console.Clear();
                     Console.WriteLine("The Scoreboard has not jet been implemented.");
                     Thread.Sleep(1000);
                     //FeatureSend = (int)AppEngine.Sequence.
                 }
-                else if(cki.Key.GetHashCode() == 13 && startMenu.Button == (int)StartMenu.Buttons.Exit)
+                else if(cki.Key.GetHashCode() == 13 && startMenu.ActiveButton == (int)StartMenu.Buttons.Exit)
                 { 
                     running = false;
                     Debug.Print("Expected false: " + running.ToString());

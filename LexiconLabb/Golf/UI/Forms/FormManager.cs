@@ -12,50 +12,19 @@ namespace Golf.UI.Forms
             FormCharacterCreation,
             FormScoreboard
         }
-        static public List<string> GetAppForms { get; set; }
-        static public List<object> ObjGetAppForms { get; set; }
-        static public List<object> AccessToObjects { get; set; }
+
         
         public int ActiveForm { get; set; }
-        private int FeatureSend { get; set; }
+        private int FeatureRequest { get; set; }
 
         FormCharacterCreation FormCharacterCreation = new FormCharacterCreation();
         FormScoreboard formScoreboard = new FormScoreboard();
         public FormManager()
         {
-            ObjGetAppForms = new List<object>();
+            
         }
 
-        public List<object> GetFormObjects(List<object> list)
-        {
-            if (ObjGetAppForms.Count == 0)
-            {
-                ObjGetAppForms = new List<object>();
-                ObjGetAppForms.Add(FormCharacterCreation);
-                ObjGetAppForms.Add(formScoreboard);
-            }
-            else if(ObjGetAppForms.Count > 0)
-            {
-                AccessToObjects = list;
-            }
-
-            return ObjGetAppForms;
-        }
-
-        public List<string> GetFormEnumItems(List<object> list)
-        {
-            if (GetAppForms == null)
-            {
-                GetAppForms = new List<string>();
-                foreach (var item in Enum.GetValues(typeof(AppForms)))
-                {
-                    GetAppForms.Add(Convert.ToString(item));
-                }
-            }
-            return GetAppForms;
-        }
-
-
+        
         public Tuple<int, int> GetForm(int featureRequest)
         {
             if (ActiveForm == (int)AppForms.FormCharacterCreation)
@@ -70,7 +39,7 @@ namespace Golf.UI.Forms
             }
             PrintFormContent();
             FormNaviagtion();
-            var pogo = Tuple.Create(item1: featureRequest, item2: FeatureSend);
+            var pogo = Tuple.Create(item1: featureRequest, item2: FeatureRequest);
             return pogo;
         }
         private void PrintFormContent()

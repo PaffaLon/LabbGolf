@@ -7,23 +7,17 @@ using Golf.UI.Menus.Content;
 
 namespace Golf.UI.Menus
 {
-    public class MenuManager : IUserActionProtocol
+    public class MenuManager
     {
-        public object ActionRequest { get; set; }
-        public object ActionSend { get; set; }
-
+        public List<string> AccessAcctions { get; set; }
+        public static List<string> MenuActions { get; set; }
         private enum AppMenus
         { 
             StartMenu,
             InGameMenu,
             LevelSelectorMenu
         }
-
-
-
-        private object Testing { get; set; }
         #region        
-        public object obj { get; set; }
         private int ActiveAppMenu { get; set; }
         private int FeatureRequest { get; set; }
 #endregion
@@ -32,15 +26,22 @@ namespace Golf.UI.Menus
         
         public MenuManager()
         {
-            
+            MenuActions = new List<string>();
+            AccessAcctions = new List<string>();
         }
         
-        private void GetUserActions()
+        public string GetUserActions()
         {
-            Testing = startMenu;
-        }
+            MenuActions.Add(startMenu.ID);
+            MenuActions.Add(levelSelector.ID);
 
- 
+            foreach (var item in MenuActions)
+                return item.ToString();
+            
+
+
+            return MenuActions.ToString();            
+        }
 
         /// <summary>
         /// Requests the needed menu infomation from the respective menu componnent.

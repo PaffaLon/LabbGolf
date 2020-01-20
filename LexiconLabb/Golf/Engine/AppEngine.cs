@@ -22,21 +22,20 @@ namespace Golf.Engine
 
     public class AppEngine : IUserActionProtocol
     {
-        private static Hashtable UserActions
-        {
-            get;
-            set;
-        }
         public object ActionRequest { get; set; }
         public object ActionSend { get; set; }
-
-
         public enum Sequence
         {
             RunMenuManager,
             RunPlayerManager,
             RunLevelManger,
             RunCharacterCreator
+        }
+
+        private static List<string> UserActions
+        {
+            get;
+            set;
         }
         private bool Running { get; set; }
         private int RunLayer { get; set; }//Thinking about replacing the property with an object as request refference.
@@ -46,7 +45,7 @@ namespace Golf.Engine
         FormManager formManager = new FormManager();
         public AppEngine()
         {
-            UserActions = new Hashtable();
+            UserActions = new List<string>();
             Running = true;
         }
 
@@ -54,7 +53,10 @@ namespace Golf.Engine
         //Runs filepath tests.
         private void AppStarUp()
         {
-               
+            UserActions.Add(menuManager.GetUserActions());
+            formManager.GetUserActions();
+            
+            
         }
 
         public void RunTime()

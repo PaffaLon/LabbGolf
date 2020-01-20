@@ -30,13 +30,6 @@ namespace Golf.Engine
         public object ActionRequest { get; set; }
         public object ActionSend { get; set; }
 
-        private void GetUserActions()
-        {
-            foreach (DictionaryEntry userAction in UserActions)
-            {
-
-            }
-        }
 
         public enum Sequence
         {
@@ -49,59 +42,19 @@ namespace Golf.Engine
         private int RunLayer { get; set; }//Thinking about replacing the property with an object as request refference.
         private int FeatureResive { get; set; }
 
-        
-
-        static private List<string> AppEnumItems { get; set; }
-        static private List<object> ObjAppFeatuers { get; set; }
-        private string AppFeature { get; set; }
-        private object Feature { get; set; }
-
         MenuManager menuManager = new MenuManager();
         FormManager formManager = new FormManager();
         public AppEngine()
         {
             UserActions = new Hashtable();
-            ObjAppFeatuers = new List<object>();
-            AppEnumItems = new List<string>();
-
             Running = true;
-        }
-
-        ~AppEngine()
-        {
-
         }
 
         //Ses the default values of the applications refferences.
         //Runs filepath tests.
         private void AppStarUp()
         {
-            ObjectApreach();
-            EnumItemAppreach();
-            void ObjectApreach()
-            {
-                Debug.Print("Enterd: ObjectApreach.");
-                ObjAppFeatuers.AddRange(menuManager.GetMenuObjects(ObjAppFeatuers));
-                ObjAppFeatuers.AddRange(formManager.GetFormObjects(ObjAppFeatuers));
-                Debug.Print("Objects in list: " + ObjAppFeatuers.Count.ToString());
-
-
-                ObjAppFeatuers.ForEach(el => Debug.Print("objects: " + el.ToString()));
-
-                foreach (var item in ObjAppFeatuers)
-                {
-                    Debug.Print(item.ToString());
-                }
-
-            }
-        }
-        void EnumItemAppreach()
-        {
-            AppEnumItems.AddRange(menuManager.GetEnumItemNames(AppEnumItems));
-            AppEnumItems.ForEach(el => Debug.Print("Enums: " + el));
-
-
-            RunLayer = (int)Sequence.RunMenuManager;
+               
         }
 
         public void RunTime()

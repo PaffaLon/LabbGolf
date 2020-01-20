@@ -19,11 +19,6 @@ namespace Golf.UI.Menus
             LevelSelectorMenu
         }
 
-        static public List<object> ObjGetAppMenues { get; set; }
-        public List<object> AccessToObjects { get; set; }
-        
-        static public List<string> GetAppMenus { get; set; } 
-        public List<int> Access { get; set; }
 
 
         private object Testing { get; set; }
@@ -37,12 +32,7 @@ namespace Golf.UI.Menus
         
         public MenuManager()
         {
-            obj = startMenu;
-            if (obj == startMenu)
-                Debug.Print("StartMenu");
-
-            ActiveAppMenu = (int)AppMenus.StartMenu;
-            startMenu.ActiveButton = (int)StartMenu.Buttons.Play;
+            
         }
         
         private void GetUserActions()
@@ -50,35 +40,7 @@ namespace Golf.UI.Menus
             Testing = startMenu;
         }
 
-        public List<object> GetMenuObjects(List<object> list)
-        {
-            Debug.Print("Hello");
-            ObjGetAppMenues = new List<object>();
-            if (ObjGetAppMenues.Count == 0)
-                ObjGetAppMenues.Add(startMenu);
-
-            else if (ObjGetAppMenues.Count > 0)
-            {
-                AccessToObjects = list;
-            }
-
-            ObjGetAppMenues.ForEach(el => Debug.Print("Objects in list: " + el.ToString()));
-            return ObjGetAppMenues;
-        }
-        public List<string> GetEnumItemNames(List<string> menusRequest)
-        {
-            if (GetAppMenus == null)
-            {
-                GetAppMenus = new List<string>();
-                foreach (var item in Enum.GetNames(typeof(AppMenus)))
-                {
-                    GetAppMenus.Add(Convert.ToString(item));
-                    //GetAppMenus.Add(Convert.ToInt32(item));
-                }
-            }
-            menusRequest = GetAppMenus;
-            return menusRequest;
-        }
+ 
 
         /// <summary>
         /// Requests the needed menu infomation from the respective menu componnent.

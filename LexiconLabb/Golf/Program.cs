@@ -10,6 +10,7 @@ namespace Golf
             /***    The Engine is still in an experimental mode.    ****/
             //TrackKeyPress();
             AppEngine appRuntime = new AppEngine();
+            appRuntime.AppStarUp();
             appRuntime.RunTime();
         }
 

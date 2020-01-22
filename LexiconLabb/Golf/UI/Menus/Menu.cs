@@ -9,7 +9,7 @@ namespace Golf.UI.Menus
     }
     public class Menu
     {
-        public string ID { get; set; }
+        public string RoutingID { get; set; }
         
         public List<string> Elements { get; set; }
         public List<string> Labels { get; set; }

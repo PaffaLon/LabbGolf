@@ -12,7 +12,7 @@ namespace Golf.UI.Forms
     }
     public class Form
     {
-        public string ID { get; set; }
+        public string RoutingID { get; set; }
         public bool DefaultValuesSet { get; set; }
 
         public List<string> Elements { get; set;}

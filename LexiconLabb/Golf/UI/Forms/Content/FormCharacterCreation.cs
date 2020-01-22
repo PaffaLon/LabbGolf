@@ -21,8 +21,8 @@ namespace Golf.UI.Forms.Content
         }
         private void SetDefaultValues()
         {
-            if (this.DefaultValuesSet)
-                this.ID = ("LevelBrowser");
+            if (string.IsNullOrEmpty(this.RoutingID))
+                this.RoutingID = ("Form-CharacterCreation");
 
             this.ActiveButton = (int)Buttons.Play;
             this.DefaultValuesSet = true;

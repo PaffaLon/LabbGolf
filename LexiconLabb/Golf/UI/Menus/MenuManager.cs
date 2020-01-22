@@ -9,8 +9,10 @@ namespace Golf.UI.Menus
 {
     public class MenuManager
     {
-        public List<string> AccessAcctions { get; set; }
-        public static List<string> MenuActions { get; set; }
+        private static List<string> ResivedProtocols { get; set; }
+        private static List<string> MenuProtocols { get; set; }
+        private static string RequestProtocol { get; set; }
+
         private enum AppMenus
         { 
             StartMenu,
@@ -19,40 +21,40 @@ namespace Golf.UI.Menus
         }
         #region        
         private int ActiveAppMenu { get; set; }
-        private int FeatureRequest { get; set; }
 #endregion
         StartMenu startMenu = new StartMenu();
         LevelBrowser levelSelector = new LevelBrowser();
         
         public MenuManager()
         {
-            MenuActions = new List<string>();
-            AccessAcctions = new List<string>();
+            if(MenuProtocols == null && ResivedProtocols == null)
+            {
+                MenuProtocols = new List<string>();
+                ResivedProtocols = new List<string>();
+            }
         }
         
-        public string GetUserActions()
+        public List<string> GetRoutingID()
         {
-            MenuActions.Add(startMenu.ID);
-            MenuActions.Add(levelSelector.ID);
+            MenuProtocols.Add(startMenu.RoutingID);
+            MenuProtocols.Add(levelSelector.RoutingID);
+            return MenuProtocols;        
+        }
 
-            foreach (var item in MenuActions)
-                return item.ToString();
-            
-
-
-            return MenuActions.ToString();            
+        public void ResiveRoutingID(string accessID)
+        {
+            ResivedProtocols.Add(accessID);
         }
 
         /// <summary>
         /// Requests the needed menu infomation from the respective menu componnent.
         /// </summary>
-        public Tuple<int,bool> GetMenu(bool running)
+        public Tuple<string,bool> GetMenu(bool running)
         {
             ClearMenuElements();
             if(ActiveAppMenu == (int)AppMenus.StartMenu)
             {
                 startMenu.Content(startMenu.ActiveButton);
-                
                 /*
                 startMenu.Content(startMenu.Button);
                 foreach (var item in startMenu.GetMenuItems)
@@ -66,7 +68,8 @@ namespace Golf.UI.Menus
             PrintMenuContent();
             MenuNavigation(ref running);
 
-            var momo = Tuple.Create(item1: FeatureRequest, item2: running);
+            //Return: RunningStatment, RequestedFeature
+            var momo = Tuple.Create(item1: RequestProtocol, item2: running);
             Debug.Print("GetMenu running: " + running.ToString());
             Debug.Print("-.-.-.-.-.-");
             return momo;
@@ -88,7 +91,7 @@ namespace Golf.UI.Menus
         /// Pressing the enter key results in one behavior.
         /// This allows the user to reach a deeper level in the application in a logical manner.
         /// </summary>
-        private Tuple<bool, int> MenuNavigation(ref bool running)
+        private bool MenuNavigation(ref bool running)
         {
             ConsoleKeyInfo cki;
             cki = Console.ReadKey();
@@ -109,7 +112,7 @@ namespace Golf.UI.Menus
                 }
                 else if(cki.Key.GetHashCode() == 13 && startMenu.ActiveButton == (int)StartMenu.Buttons.Play)
                 {
-                    FeatureRequest = (int)AppEngine.Sequence.RunCharacterCreator;
+                    RequestProtocol = ResivedProtocols[0];
                 }
                 else if(cki.Key.GetHashCode() == 13 && startMenu.ActiveButton == (int)StartMenu.Buttons.Load)
                 {
@@ -137,8 +140,7 @@ namespace Golf.UI.Menus
 
             //-END: of IF statments-\\
             Debug.Print("return running from NAV: " + running.ToString());
-            var tuple = Tuple.Create(item1: running, item2: FeatureRequest);
-            return tuple;
+            return running;
         }
         private void CenterText()
         {

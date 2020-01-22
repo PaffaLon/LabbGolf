@@ -19,8 +19,8 @@ namespace Golf.UI.Menus.Content
 
         private void SetDefaultValues()
         {
-                if (this.DefaultValuesSet)
-                this.ID = ("LevelBrowser");
+            if (string.IsNullOrEmpty(this.RoutingID))
+                this.RoutingID = ("LevelBrowser");
 
             this.ActiveButton = (int)Buttons.Exit;
             this.DefaultValuesSet = true;

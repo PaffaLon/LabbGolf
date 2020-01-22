@@ -27,8 +27,8 @@ namespace Golf.UI.Menus.Content
         //A default value manu never change value, or acts a first refference.
         private void SetDefaultValues()
         {
-            if (string.IsNullOrEmpty(this.ID))
-                this.ID = ("StartMenu");
+            if (string.IsNullOrEmpty(this.RoutingID))
+                this.RoutingID = ("StartMenu");
             
             this.ActiveButton = (int)Buttons.Play;
             this.DefaultValuesSet = true;

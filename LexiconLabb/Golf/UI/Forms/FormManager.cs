@@ -7,10 +7,10 @@ namespace Golf.UI.Forms
 {
     public class FormManager
     {
-        public List<string> AccessAcctions { get; set; }
+        public static List<string> AccessAcctions { get; set; }
         public static List<string> FormActions { get; set; }
         public int ActiveForm { get; set; }
-        private enum AppForms
+        public enum AppForms
         {
             FormCharacterCreation,
             FormScoreboard
@@ -21,16 +21,24 @@ namespace Golf.UI.Forms
         FormScoreboard formScoreboard = new FormScoreboard();
         public FormManager()
         {
-            AccessAcctions = new List<string>();
-            FormActions = new List<string>();
+            if (FormActions == null && AccessAcctions == null)
+            {
+                FormActions = new List<string>();
+                AccessAcctions = new List<string>();
+            }
+        }
+        public List<string> GetRoutingID()
+        {
+            FormActions.Add(FormCharacterCreation.RoutingID);
+            FormActions.Add(formScoreboard.RoutingID);
+
+            return FormActions;
+        }
+        public void ResiveRoutingID(string accessID)
+        {
+            AccessAcctions.Add(accessID);
         }
 
-        public void GetUserActions()
-        {
-            FormActions.Add(FormCharacterCreation.ID);
-            FormActions.Add(formScoreboard.ID);
-        }
-        
         public Tuple<int, int> GetForm(int featureRequest)
         {
             if (ActiveForm == (int)AppForms.FormCharacterCreation)

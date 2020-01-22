@@ -24,19 +24,23 @@ namespace Golf.Engine
     {
         public object ActionRequest { get; set; }
         public object ActionSend { get; set; }
-        public enum Sequence
+        private enum Sequence
         {
             RunMenuManager,
+            RunFormManager,
             RunPlayerManager,
             RunLevelManger,
-            RunCharacterCreator
         }
 
-        private static List<string> UserActions
+        private object[] TypeX = new object[4];
+
+        private static List<string> RoutingProtocolIDs
         {
             get;
             set;
         }
+        private static string RequestedProtocol { get; set; }
+        private static string ActiveProtocol { get; set; }
         private bool Running { get; set; }
         private int RunLayer { get; set; }//Thinking about replacing the property with an object as request refference.
         private int FeatureResive { get; set; }
@@ -45,18 +49,39 @@ namespace Golf.Engine
         FormManager formManager = new FormManager();
         public AppEngine()
         {
-            UserActions = new List<string>();
+            RoutingProtocolIDs = new List<string>();
             Running = true;
         }
 
         //Ses the default values of the applications refferences.
         //Runs filepath tests.
-        private void AppStarUp()
+        public void AppStarUp()
         {
-            UserActions.Add(menuManager.GetUserActions());
-            formManager.GetUserActions();
-            
-            
+            void RequestRoutingIDs()
+            {
+                RoutingProtocolIDs.AddRange(menuManager.GetRoutingID());
+                RoutingProtocolIDs.AddRange(formManager.GetRoutingID());
+            }
+            void ShareRoutingIDs()
+            {
+                menuManager.ResiveRoutingID(RoutingProtocolIDs[2]);
+                menuManager.ResiveRoutingID(RoutingProtocolIDs[3]);
+                formManager.ResiveRoutingID(RoutingProtocolIDs[0]);
+            }
+            void SetDefaultRoutingID()
+            {
+                RequestedProtocol = RoutingProtocolIDs[0];
+            }
+
+            if (RoutingProtocolIDs == null)
+            {
+                RequestRoutingIDs();
+                ShareRoutingIDs();
+                SetDefaultRoutingID();
+            }
+
+            foreach (var item in RoutingProtocolIDs)
+                Debug.Print("UserActions: " + item);
         }
 
         public void RunTime()
@@ -64,20 +89,44 @@ namespace Golf.Engine
             AppStarUp();
             while (Running == true)
             {
+                if(RequestedProtocol == RoutingProtocolIDs[0] || RequestedProtocol == RoutingProtocolIDs[1])
+                    RunLayer = (int)Sequence.RunMenuManager;
+                
+                else if (RequestedProtocol == RoutingProtocolIDs[0] || RequestedProtocol == RoutingProtocolIDs[1])
+                {
+                    RunLayer = (int)Sequence.RunFormManager;
+                }
+                else
+                {
+                    Debug.Print("Error"
+                    + Environment.NewLine
+                    + "Error Code: Protocol-ID-Error"
+                    + Environment.NewLine
+                    + "Resived Protocol-ID: "
+                    + RequestedProtocol);
+                }
+
+                
+
                 //Check where the user are in the program.
                 switch (RunLayer)
                 {
+                    case (int)Sequence.RunMenuManager:
+                        //Sending: MenuType, FormType, Running
+                        //Reseving: MenuType, FormType
+                        (ActiveProtocol, Running) = menuManager.GetMenu(Running);
+                        break;
                     case (int)Sequence.RunLevelManger:
                         break;
                     case (int)Sequence.RunPlayerManager:
                         break;
-                    case (int)Sequence.RunCharacterCreator:
-                        (RunLayer, FeatureResive) = formManager.GetForm(RunLayer);
-                        break;
                     default:
-                        //Sending: MenuType, FormType, Running
-                        //Reseving: MenuType, FormType
-                        (RunLayer, Running) = menuManager.GetMenu(Running);
+                        Debug.Print("Error"
+                                    + Environment.NewLine 
+                                    + "Error Code: Incorect value."
+                                    + Environment.NewLine
+                                    + "RunLayer: "
+                                    + RunLayer);
                         break;
                 }
                 UpdateRequest(RunLayer, FeatureResive);

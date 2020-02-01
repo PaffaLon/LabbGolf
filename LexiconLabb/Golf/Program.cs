@@ -1,5 +1,4 @@
-﻿using Golf.Engine;
-using System;
+﻿using System;
 
 namespace Golf
 {
@@ -9,8 +8,7 @@ namespace Golf
         {
             /***    The Engine is still in an experimental mode.    ****/
             //TrackKeyPress();
-            AppEngine appRuntime = new AppEngine();
-            appRuntime.RunTime();
+        
         }
 
         static void TrackKeyPress()

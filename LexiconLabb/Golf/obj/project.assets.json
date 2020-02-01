@@ -65,23 +65,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Deltagare\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Deltagare\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\Golf.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\Golf.csproj",
       "projectName": "Golf",
-      "projectPath": "C:\\Users\\Deltagare\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\Golf.csproj",
-      "packagesPath": "C:\\Users\\Deltagare\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Deltagare\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\obj\\",
+      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\Golf.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Deltagare\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],

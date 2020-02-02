@@ -15,7 +15,7 @@ namespace Golf
         }
         
         private static string AppFeatureRequest    { get; set; }
-        private static string AppfeatureRequsted   { get; set; }
+        private static string AppFeatureRequsted   { get; set; }
         
         private static List<string> AppFeatuers { get; set; }
         private static bool _running;
@@ -47,7 +47,9 @@ namespace Golf
                 foreach (var item in UIHandler.UIFeatuers)
                     AppFeatuers.Add(item);
 
-                
+                foreach (var item in UIHandler.AppFeatureAccess)
+                    AppFeatuers.Add(item);
+
             }
             void SendAppFeatuers()
             {
@@ -62,6 +64,7 @@ namespace Golf
             }
             void DebugPrint()
             {
+                Debug.Print(Environment.NewLine);
                 foreach (var item in UIHandler.UIFeatuers)
                     Debug.Print(Environment.NewLine + $"AppFeatuers Items: {item}");
             }
@@ -73,32 +76,37 @@ namespace Golf
             UIHandler uIHandler = new UIHandler();
             if (_defualtValuesSet == false)
                 StartUp();
-            //=================================\\
-            if(AppFeatureRequest == AppFeatuers[0])
-            {
-                AppfeatureRequsted = AppFeatureRequest;
-                _runAppLayer = (int)RunAppLayer.RunUI;
-            }
-            //=================================\\
-            else if (AppFeatureRequest == AppFeatuers[1])
-            {
-                AppfeatureRequsted = AppFeatureRequest;
-                _runAppLayer = (int)RunAppLayer.RunEntity;
-            }
-            //=================================\\
-            else
-            {
-                Debug.Print("||====================||"              + Environment.NewLine
-                        + "Error Code: unknown_app_feature"         + Environment.NewLine
-                        + $"AppFeatureRequest: {AppFeatureRequest}" + Environment.NewLine
-                        + "Program location: Engine.Main");
-            }
-            //=================================\\
+
             while (_running == true)
             {
+                //=================================\\
+                if (AppFeatureRequest == AppFeatuers[0])
+                {
+                    AppFeatureRequsted = AppFeatureRequest;
+                    _runAppLayer = (int)RunAppLayer.RunUI;
+                }
+                //=================================\\
+                else if (AppFeatureRequest == AppFeatuers[1])
+                {
+                    AppFeatureRequsted = AppFeatureRequest;
+                    _runAppLayer = (int)RunAppLayer.RunEntity;
+                }
+                //=================================\\
+                else
+                {
+                    Debug.Print(Environment.NewLine);
+                    Debug.Print("||====================||" + Environment.NewLine
+                            + "Error Code: unknown_app_feature" + Environment.NewLine
+                            + $"AppFeatureRequest: {AppFeatureRequest}" + Environment.NewLine
+                            + "Program location: Engine.Main");
+                    _running = false;
+                }
+                //=================================\\
+
                 switch (_runAppLayer)
                 {
                     case (int)RunAppLayer.RunUI:
+                        Debug.Print(Environment.NewLine);
                         Debug.Print($"AppFeatureRequest: {AppFeatureRequest}");
                         uIHandler.LoadUI(AppFeatureRequest);
                         _running = uIHandler.GetUI(ref _running);
@@ -106,7 +114,9 @@ namespace Golf
                     case (int)RunAppLayer.RunEntity:
                         break;
                     default:
+                        Debug.Print(Environment.NewLine);
                         Debug.Print($"Unexpected value. _runAppLayer: {_runAppLayer}");
+                        _running = false;
                         break;
                 }
             }

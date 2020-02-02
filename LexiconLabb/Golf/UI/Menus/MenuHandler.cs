@@ -71,7 +71,7 @@ namespace Golf.UI.Menus
             }
             _appFeatureRequest = appFeature;
         }
-        public bool GetMenu(ref bool running)
+        public Tuple<bool, string> GetMenu(ref bool running)
         {
             ClearMenuElements();
             if(_runAppMenu == (int)AppMenus.StartMenu)
@@ -89,7 +89,9 @@ namespace Golf.UI.Menus
             {
 
             }
-            return running;
+
+            var tuple = Tuple.Create(item1: running, item2: _appFeatureRequest);
+            return tuple;
         }                                                                              
         private void PrintMenu()
         {
@@ -131,6 +133,8 @@ namespace Golf.UI.Menus
                 else if (cki.Key.GetHashCode() == 13 && startMenu.PressedButton == (int)StartMenu.Buttons.NewGame)
                 {
                     _appFeatureRequest = AppFeatureAccess[0];
+                    Debug.Print(Environment.NewLine);
+                    Debug.Print($"_appFeatureRequest {_appFeatureRequest}");
                     //Console.Clear();
                     //Console.WriteLine("The New Game feature have not been implemented.");
                     //Thread.Sleep(1000);

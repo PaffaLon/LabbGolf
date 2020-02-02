@@ -20,7 +20,8 @@ namespace Golf.UI
         public static List<string> AppFeatureAccess { get; set; }
 
         //Private Initialization
-        private string _requestedAppFeature;
+        private string _appFeatureRequsted;
+        private string _appFeatureRequest;
         private bool _defaultValuesSet;
         private int _runUI;
 
@@ -92,29 +93,46 @@ namespace Golf.UI
             //=================================\\
             else
             {
+                Debug.Print("||====================||" + Environment.NewLine
+                            + "Error Code: unknown_app_feature" + Environment.NewLine
+                            + $"appFeature: {appFeature}" + Environment.NewLine
+                            + "Program location: UIHandler.LoadUI");
+            }
+            //=================================\\
+            if (appFeature == AppFeatureAccess[2])
+                _runUI = (int)UIs.Forms;
+            //=================================\\
+            else
+            {
                 Debug.Print("||====================||"          + Environment.NewLine
                             + "Error Code: unknown_app_feature" + Environment.NewLine
                             + $"appFeature: {appFeature}"       + Environment.NewLine
                             + "Program location: UIHandler.LoadUI");
             }
             
-            _requestedAppFeature = appFeature;
+            _appFeatureRequsted = appFeature;
         }
-        public bool GetUI(ref bool running)
+        public Tuple<bool, string> GetUI(ref bool running)
         {
             if(_runUI == (int)UIs.Menus) 
             {
-                menuHandler.LoadMenu(_requestedAppFeature);
-                menuHandler.GetMenu(ref running);
+                menuHandler.LoadMenu(_appFeatureRequest);
+                (running, _appFeatureRequsted) = menuHandler.GetMenu(ref running);
+                Debug.Print("Program Location: UIHandler.GetUI" + Environment.NewLine
+                            + "Values passed in:::" + Environment.NewLine
+                            + $"running: {running}" + Environment.NewLine
+                            + $"_appFeatureRequest: {_appFeatureRequest}");
             }
             else if (_runUI == (int)UIs.Forms) 
             {
-                
+                formHandler.LoadForm(_appFeatureRequest);
+                formHandler.GetForm();
             }
             else if (_runUI == (int)UIs.Levels) 
             {
 
             }
+            var
             return running;
         }
     }

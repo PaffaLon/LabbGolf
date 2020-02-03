@@ -108,7 +108,9 @@ namespace Golf
                     case (int)RunAppLayer.RunUI:
                         Debug.Print(Environment.NewLine);
                         Debug.Print($"AppFeatureRequest: {AppFeatureRequest}");
-                        
+
+                        uIHandler.LoadUI(UIHandler.UIID.Menus);
+                        uIHandler.GetUI(_running, UIHandler.UIID.Menus);
                         //uIHandler.LoadUI(AppFeatureRequest);
                         //_running = uIHandler.GetUI(ref _running);
                         break;

@@ -76,8 +76,10 @@ namespace Golf.UI.Menus
             switch (appMenus)
             {
                 case AppMenus.StartMenu:
+                    _runAppMenu = (int)AppMenus.StartMenu;
                     break;
                 case AppMenus.InGameMenu:
+                    _runAppMenu = (int)AppMenus.InGameMenu;
                     break;
                 default:
                     break;

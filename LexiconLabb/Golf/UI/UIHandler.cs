@@ -155,7 +155,7 @@ namespace Golf.UI
             var tuple = Tuple.Create(item1: running, item2: _appFeatureRequest);
             return tuple;
         }
-        public void GetUI()
+        public void GetUI(ref bool running, UIID uIID)
         {
             if (_runUI == (int)UIID.Menus)
             {

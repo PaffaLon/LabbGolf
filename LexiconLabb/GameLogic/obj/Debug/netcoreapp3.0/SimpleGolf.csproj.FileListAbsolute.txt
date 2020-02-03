@@ -1,0 +1,11 @@
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GameLogic\bin\Debug\netcoreapp3.0\SimpleGolf.exe
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GameLogic\bin\Debug\netcoreapp3.0\SimpleGolf.deps.json
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GameLogic\bin\Debug\netcoreapp3.0\SimpleGolf.runtimeconfig.json
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GameLogic\bin\Debug\netcoreapp3.0\SimpleGolf.runtimeconfig.dev.json
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GameLogic\bin\Debug\netcoreapp3.0\SimpleGolf.dll
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GameLogic\bin\Debug\netcoreapp3.0\SimpleGolf.pdb
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GameLogic\obj\Debug\netcoreapp3.0\SimpleGolf.csprojAssemblyReference.cache
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GameLogic\obj\Debug\netcoreapp3.0\SimpleGolf.AssemblyInfoInputs.cache
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GameLogic\obj\Debug\netcoreapp3.0\SimpleGolf.AssemblyInfo.cs
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GameLogic\obj\Debug\netcoreapp3.0\SimpleGolf.dll
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GameLogic\obj\Debug\netcoreapp3.0\SimpleGolf.pdb

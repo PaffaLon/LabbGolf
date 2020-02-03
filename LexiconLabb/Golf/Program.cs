@@ -8,7 +8,7 @@ namespace Golf
         static void Main()
         {
             /***    The Engine is still in an experimental mode.    ****/
-            //TrackKeyPress();
+            TrackKeyPress();
             AppEngine appRuntime = new AppEngine();
             appRuntime.AppStarUp();
             appRuntime.RunTime();

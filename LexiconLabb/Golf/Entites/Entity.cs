@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Golf.Logic.Stages.Levels
+namespace Golf.Entites
 {
-    class LevelThree
+    abstract class Entity
     {
     }
 }

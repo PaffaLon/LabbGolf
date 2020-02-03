@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Deltagare\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\Golf.csproj": {}
+    "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\Golf.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Deltagare\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\Golf.csproj": {
+    "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\Golf.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Deltagare\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\Golf.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\Golf.csproj",
         "projectName": "Golf",
-        "projectPath": "C:\\Users\\Deltagare\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\Golf.csproj",
-        "packagesPath": "C:\\Users\\Deltagare\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Deltagare\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\obj\\",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\Golf.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\Golf\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Deltagare\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -41,12 +41,6 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
-          "dependencies": {
-            "System.ValueTuple": {
-              "target": "Package",
-              "version": "[4.5.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

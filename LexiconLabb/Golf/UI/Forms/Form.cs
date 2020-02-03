@@ -6,23 +6,20 @@ namespace Golf.UI.Forms
 {
     interface IForm
     {
-        private void SetDefaultValues()
-        {
-        }
+        public void LoadForm();
+        public enum Buttons { }
     }
-    public class Form
+    abstract class Form
     {
-        public string RoutingID { get; set; }
-        public bool DefaultValuesSet { get; set; }
+        //Public Initialization
+        public List<string> FormElements { get; set; }
+        public int PressedButton { get; set; }
 
-        public List<string> Elements { get; set;}
-        public List<string> Labels   { get; set; }
-        public int ActiveButton { get; set; }
 
-        public Form()
-        {
-            Elements = new List<string>();
-            Labels = new List<string>();
-        }
+        // Protected Initialization
+        #region ProtectedProps
+        protected string[] Lables { get; set; }
+        protected bool DefaultValuesSet { get; set; }
+        #endregion
     }
 }

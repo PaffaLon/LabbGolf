@@ -1,134 +1,98 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Golf.UI.Menus.Content
 {
-    public class StartMenu : Menu, IMenu
+    sealed class StartMenu : Menu, IMenu
     {
         public enum Buttons
         {
-            Play,
-            Load,
-            Scoreboard,
-            Exit
+            NewGame     = 1,
+            LoadGame    = 2,
+            ScoreBoard  = 3,
+            Exit        = 4
         }
-
-        public string[] GetMenuItems = new string[4];
-        private string[] getMenuItems = new string[4];
-
         public StartMenu()
         {
-            if(this.DefaultValuesSet == false)
+            if (this.DefaultValuesSet == false)
                 SetDefaultValues();
         }
-
-        //Sets the default values of the StartMenu.
-        //A default value manu never change value, or acts a first refference.
         private void SetDefaultValues()
         {
-            if (string.IsNullOrEmpty(this.RoutingID))
-                this.RoutingID = ("StartMenu");
-            
-            this.ActiveButton = (int)Buttons.Play;
+            if (this.MenuElements == null)
+                this.MenuElements = new List<string>();
+
+            if(this.SelectedMenuItems == null && this.UnselectedMenuItems == null)
+            {
+                this.UnselectedMenuItems = new string[4];
+                this.SelectedMenuItems = new string[4];
+#region ArrayValueInitialization
+                this.UnselectedMenuItems[0] = ("New Game ");
+                this.UnselectedMenuItems[1] = ("Load Game");
+                this.UnselectedMenuItems[2] = ("Scoreboard");
+                this.UnselectedMenuItems[3] = ("Exit");
+
+                this.SelectedMenuItems[0] = (">>  New Game    <<");
+                this.SelectedMenuItems[1] = (">>  Load Game   <<");
+                this.SelectedMenuItems[2] = (">>  Scoreboard  <<");
+                this.SelectedMenuItems[3] = (">> Exit <<");
+#endregion
+            }
+
+            this.PressedButton = (int)Buttons.NewGame;
             this.DefaultValuesSet = true;
         }
+ 
 
-        private void Labels(int buttonID)
+        public void LoadMenu(int button)
         {
-            string[] unselectedMenuItems = new string[4];
-            string[] selectedMenuItems = new string[4];
-#region ArrayValueInizilazation
-            unselectedMenuItems[0] = ("Play");
-            unselectedMenuItems[1] = ("Load");
-            unselectedMenuItems[2] = ("Scoreboard");
-            unselectedMenuItems[3] = ("Exit");
-
-            selectedMenuItems[0] = (">> Play <<");
-            selectedMenuItems[1] = (">> Load <<");
-            selectedMenuItems[2] = (">> Scoreboard <<");
-            selectedMenuItems[3] = (">> Exit <<");
-            #endregion
-
-            if (this.ActiveButton == (int)Buttons.Play)
+            if (button == (int)Buttons.NewGame)
             {
-                getMenuItems[0] = selectedMenuItems[0];
-                getMenuItems[1] = unselectedMenuItems[1];
-                getMenuItems[2] = unselectedMenuItems[2];
-                getMenuItems[3] = unselectedMenuItems[3];
+                this.MenuElements.Add(new string(this.SelectedMenuItems[0]));
+                this.MenuElements.Add(new string(this.UnselectedMenuItems[1]));
+                this.MenuElements.Add(UnselectedMenuItems[2]);
+                this.MenuElements.Add(UnselectedMenuItems[3]);
             }
-            else if (this.ActiveButton == 1)
+            else if(button == (int)Buttons.LoadGame)
             {
-                getMenuItems[1] = selectedMenuItems[1];
-                getMenuItems[0] = unselectedMenuItems[0];
-                getMenuItems[2] = unselectedMenuItems[2];
-                getMenuItems[3] = unselectedMenuItems[3];
+                this.MenuElements.Add(this.UnselectedMenuItems[0]);
+                this.MenuElements.Add(this.SelectedMenuItems[1]);
+                this.MenuElements.Add(this.UnselectedMenuItems[2]);
+                this.MenuElements.Add(this.UnselectedMenuItems[3]);
             }
-            else if (this.ActiveButton == 2)
+            else if(button == (int)Buttons.ScoreBoard)
             {
-                getMenuItems[2] = selectedMenuItems[2];
-                getMenuItems[0] = unselectedMenuItems[0];
-                getMenuItems[1] = unselectedMenuItems[1];
-                getMenuItems[3] = unselectedMenuItems[3];
+                this.MenuElements.Add(this.UnselectedMenuItems[0]);
+                this.MenuElements.Add(this.UnselectedMenuItems[1]);
+                this.MenuElements.Add(this.SelectedMenuItems[2]);
+                this.MenuElements.Add(this.UnselectedMenuItems[3]);
             }
-            else if (this.ActiveButton == 3)
+            else if (button == (int)Buttons.Exit)
             {
-                getMenuItems[3] = selectedMenuItems[3];
-                getMenuItems[0] = unselectedMenuItems[0];
-                getMenuItems[1] = unselectedMenuItems[1];
-                getMenuItems[2] = unselectedMenuItems[2];
+                this.MenuElements.Add(this.UnselectedMenuItems[0]);
+                this.MenuElements.Add(this.UnselectedMenuItems[1]);
+                this.MenuElements.Add(this.UnselectedMenuItems[2]);
+                this.MenuElements.Add(this.SelectedMenuItems[3]);
             }
-
-            foreach (var label in getMenuItems);
-                //this.Labels.Add(label.ToString());
         }
 
-        public void Content(int menuButton)
+        private void DebugPrint()
         {
-            string[] unselectedMenuItems = new string[4];
-            string[] selectedMenuItems = new string[4];
-
-            unselectedMenuItems[0] = ("Play");
-            unselectedMenuItems[1] = ("Load");
-            unselectedMenuItems[2] = ("Scoreboard");
-            unselectedMenuItems[3] = ("Exit");
-
-            selectedMenuItems[0] = (">> Play <<");
-            selectedMenuItems[1] = (">> Load <<");
-            selectedMenuItems[2] = (">> Scoreboard <<");
-            selectedMenuItems[3] = (">> Exit <<");
-
-            if (menuButton == 0)
+            foreach (var item in this.UnselectedMenuItems)
             {
-                GetMenuItems[0] = selectedMenuItems[0];
-                GetMenuItems[1] = unselectedMenuItems[1];
-                GetMenuItems[2] = unselectedMenuItems[2];
-                GetMenuItems[3] = unselectedMenuItems[3];
+                Debug.Print($"StartMenu || this.UnselectedMenuItems: {item}");
             }
-            else if (menuButton == 1)
+            foreach (var item in this.SelectedMenuItems)
             {
-                GetMenuItems[1] = selectedMenuItems[1];
-                GetMenuItems[0] = unselectedMenuItems[0];
-                GetMenuItems[2] = unselectedMenuItems[2];
-                GetMenuItems[3] = unselectedMenuItems[3];
+                Debug.Print($"StartMenu || this.SelectedMenuItems: {item}");
             }
-            else if (menuButton == 2)
-            {
-                GetMenuItems[2] = selectedMenuItems[2];
-                GetMenuItems[0] = unselectedMenuItems[0];
-                GetMenuItems[1] = unselectedMenuItems[1];
-                GetMenuItems[3] = unselectedMenuItems[3];
-            }
-            else if (menuButton == 3)
-            {
-                GetMenuItems[3] = selectedMenuItems[3];
-                GetMenuItems[0] = unselectedMenuItems[0];
-                GetMenuItems[1] = unselectedMenuItems[1];
-                GetMenuItems[2] = unselectedMenuItems[2];
-            }
-            
 
-            
+            foreach (var item in this.MenuElements)
+            {
+                Debug.Print($"StartMenu || this.MenuElements: {item}");
+            }
         }
     }
 }

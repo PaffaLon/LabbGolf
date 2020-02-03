@@ -1,26 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Golf.UI.Menus
 {
-    interface IMenu
+    public interface IMenu
     {
+        public void LoadMenu(int value);
         public enum Buttons { }
-        private void SetDefaultValues() { }
     }
-    public class Menu
+    abstract class Menu
     {
-        public string RoutingID { get; set; }
-        
-        public List<string> Elements { get; set; }
-        public List<string> Labels { get; set; }
-        public bool DefaultValuesSet { get; set; }
-        
-        public int ActiveButton { get; set; }
+        //Public Initialization
+        public List<string> MenuElements { get; set; }
+        public int PressedButton { get; set; }
 
-        public Menu()
-        {
-            Elements = new List<string>();
-            Labels = new List<string>();
-        }
+
+        // Protected Initialization
+#region ProtectedProps
+        protected string[] SelectedMenuItems { get; set; }
+        protected string[] UnselectedMenuItems { get; set; }
+        protected bool DefaultValuesSet { get; set; }
+#endregion
     }
 }

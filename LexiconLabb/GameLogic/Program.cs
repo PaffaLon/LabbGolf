@@ -1,41 +1,36 @@
 ﻿using System;
+using SimpleGolf.Logic;
+using SimpleGolf.Characters.Players;
 
 namespace GameLogic
 {
     class Program
     {
         private static bool _running;
+
         static void Main()
         {
-            ConsoleKeyInfo cki;
-            cki = Console.ReadKey();
-
-            Console.WriteLine(cki.Key.GetHashCode());
-
-            //Up: 38
-            //Down: 40
-            //Space: 32
-
+            PrintMssage();
+            CreateNewCharacter();
+            Game game = new Game();
+                 game.ReadGameControles();
+           
             while (_running == true)
             {
-                if (cki.Key.GetHashCode() == 38)//Key UP
-                {
-
-                }
-                else if (cki.Key.GetHashCode() == 40)//Key DOWN
-                {
-
-                }
-                else if (cki.Key.GetHashCode() == 32)
-                {
-
-                }
-                else
-                {
-
-                }
+                
             }
-
+        }
+        private static void PrintMssage()
+        {
+            string msg = "Enter player name: ";
+            Console.Write(msg);
+            Console.SetCursorPosition(msg.Length + 1, 0);
+        }
+        private static void CreateNewCharacter()
+        {
+            Player player = new Player();
+                   player.NewName(Console.ReadLine());
+                   player.SavePlayerObject(player);
         }
     }
 }

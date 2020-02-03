@@ -10,7 +10,7 @@ namespace Golf.UI
     public class UIHandler
     {
         //Public Initialization
-        private enum UIs
+        public enum UIID
         {
             Menus,
             Forms,
@@ -43,7 +43,7 @@ namespace Golf.UI
 #region CMM
         private void CreateUIFeatureSignatures()
         {
-            foreach (var item in Enum.GetNames(typeof(UIs)))
+            foreach (var item in Enum.GetNames(typeof(UIID)))
                 UIFeatuers.Add(item);
         }
         private void SetDefaultValues()
@@ -74,7 +74,7 @@ namespace Golf.UI
                 foreach (var item in AppFeatureAccess)
                     Debug.Print($"AppFeatureAccess Items: {item}");
             }
-            _runUI = (int)UIs.Menus;
+            _runUI = (int)UIID.Menus;
             _defaultValuesSet = true;
         }
 #endregion
@@ -83,13 +83,13 @@ namespace Golf.UI
         public void LoadUI(string appFeature)
         {
             if(appFeature == UIFeatuers[0])
-                _runUI = (int)UIs.Menus;
+                _runUI = (int)UIID.Menus;
             //=================================\\
             else if (appFeature == UIFeatuers[1])
-                _runUI = (int)UIs.Forms;
+                _runUI = (int)UIID.Forms;
             //=================================\\
             else if (appFeature == UIFeatuers[2])
-                _runUI = (int)UIs.Levels;
+                _runUI = (int)UIID.Levels;
             //=================================\\
             else
             {
@@ -100,7 +100,7 @@ namespace Golf.UI
             }
             //=================================\\
             if (appFeature == AppFeatureAccess[2])
-                _runUI = (int)UIs.Forms;
+                _runUI = (int)UIID.Forms;
             //=================================\\
             else
             {
@@ -112,9 +112,29 @@ namespace Golf.UI
             
             _appFeatureRequsted = appFeature;
         }
+
+        public void LoadUI(UIID uiID)
+        {
+            switch (uiID)
+            {
+                case UIID.Menus:
+                    _runUI = (int)UIID.Menus;
+                    break;
+
+                case UIID.Forms:
+                    _runUI = (int)UIID.Forms;
+                    break;
+
+                case UIID.Levels:
+                    _runUI = (int)UIID.Levels;
+                    break;
+                default:
+                    break;
+            }
+        }
         public Tuple<bool, string> GetUI(ref bool running)
         {
-            if(_runUI == (int)UIs.Menus) 
+            if(_runUI == (int)UIID.Menus) 
             {
                 menuHandler.LoadMenu(_appFeatureRequest);
                 (running, _appFeatureRequsted) = menuHandler.GetMenu(ref running);
@@ -123,17 +143,36 @@ namespace Golf.UI
                             + $"running: {running}" + Environment.NewLine
                             + $"_appFeatureRequest: {_appFeatureRequest}");
             }
-            else if (_runUI == (int)UIs.Forms) 
+            else if (_runUI == (int)UIID.Forms) 
             {
                 formHandler.LoadForm(_appFeatureRequest);
                 formHandler.GetForm();
             }
-            else if (_runUI == (int)UIs.Levels) 
+            else if (_runUI == (int)UIID.Levels) 
             {
 
             }
-            var
-            return running;
+            var tuple = Tuple.Create(item1: running, item2: _appFeatureRequest);
+            return tuple;
+        }
+        public void GetUI()
+        {
+            if (_runUI == (int)UIID.Menus)
+            {
+                menuHandler.LoadMenu(MenuHandler.AppMenus.StartMenu);
+            }
+            else if (_runUI == (int)UIID.Forms)
+            {
+
+            }
+            else if (_runUI == (int)UIID.Levels)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }

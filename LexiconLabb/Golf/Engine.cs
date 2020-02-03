@@ -108,8 +108,9 @@ namespace Golf
                     case (int)RunAppLayer.RunUI:
                         Debug.Print(Environment.NewLine);
                         Debug.Print($"AppFeatureRequest: {AppFeatureRequest}");
-                        uIHandler.LoadUI(AppFeatureRequest);
-                        _running = uIHandler.GetUI(ref _running);
+                        
+                        //uIHandler.LoadUI(AppFeatureRequest);
+                        //_running = uIHandler.GetUI(ref _running);
                         break;
                     case (int)RunAppLayer.RunEntity:
                         break;

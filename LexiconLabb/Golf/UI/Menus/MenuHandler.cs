@@ -10,16 +10,16 @@ namespace Golf.UI.Menus
     public class MenuHandler
     {
         //Public Initialization
+        public enum AppMenus
+        {
+            StartMenu,
+            InGameMenu
+        }
         public static List<string> AppFeatureAccess { get; set; }
         public static List<string> MenuFeatuers     { get; set; }
 
         // Private Initialization
 #region Private
-        private enum AppMenus
-        {
-            StartMenu,
-            InGameMenu
-        }
         private string _appFeatureRequest;
         private bool _defaultValuesSet;
         private int _runAppMenu;
@@ -70,6 +70,18 @@ namespace Golf.UI.Menus
                             + "Program location: MenuHandler.LoadForm");
             }
             _appFeatureRequest = appFeature;
+        }
+        public void LoadMenu(AppMenus appMenus)
+        {
+            switch (appMenus)
+            {
+                case AppMenus.StartMenu:
+                    break;
+                case AppMenus.InGameMenu:
+                    break;
+                default:
+                    break;
+            }
         }
         public Tuple<bool, string> GetMenu(ref bool running)
         {

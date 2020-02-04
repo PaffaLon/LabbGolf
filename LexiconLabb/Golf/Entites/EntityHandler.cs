@@ -5,6 +5,11 @@ using System.Text;
 
 namespace Golf.Entites
 {
+    public enum EntityID
+    {
+        Character,
+        Item
+    }
     public class EntityHandler
     {
         //Public Initialization
@@ -12,11 +17,6 @@ namespace Golf.Entites
         public static List<string> EntityFeatuers   { get; set; }
 
         // Private Initialization
-        private enum AppEntities
-        {
-            Character,
-            Item
-        }
         private string _appFeatureRequest;
         private bool _defaultValuesSet;
         private int _runAppEntity;
@@ -37,7 +37,7 @@ namespace Golf.Entites
 #region CMM
         private void CreateEntityFeatureSignatures()
         {
-            foreach (var item in Enum.GetNames(typeof(AppEntities)))
+            foreach (var item in Enum.GetNames(typeof(EntityID)))
                 EntityFeatuers.Add(item);
         }
         private void SetDefaultValues()
@@ -49,10 +49,10 @@ namespace Golf.Entites
         public void LoadEntity(string appFeature)
         {
             if (appFeature == EntityFeatuers[0])
-                _runAppEntity = (int)AppEntities.Character;
+                _runAppEntity = (int)EntityID.Character;
             //=================================\\
             else if (appFeature == EntityFeatuers[1])
-                _runAppEntity = (int)AppEntities.Item;
+                _runAppEntity = (int)EntityID.Item;
             //=================================\\
             else
             {

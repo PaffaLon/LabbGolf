@@ -7,14 +7,14 @@ using Golf.UI.Menus.Content;
 
 namespace Golf.UI.Menus
 {
+    public enum MenuID
+    {
+        StartMenu,
+        InGameMenu
+    }
     public class MenuHandler
     {
         //Public Initialization
-        public enum AppMenus
-        {
-            StartMenu,
-            InGameMenu
-        }
         public static List<string> AppFeatureAccess { get; set; }
         public static List<string> MenuFeatuers     { get; set; }
 
@@ -44,12 +44,12 @@ namespace Golf.UI.Menus
  #region CHH
         private void CreateMenuFeatureSignatuers()
         {
-            foreach (var item in Enum.GetNames(typeof(AppMenus)))
+            foreach (var item in Enum.GetNames(typeof(MenuID)))
                 MenuFeatuers.Add(item);
         }
         private void SetDefaultValues()
         {
-            _runAppMenu = (int)AppMenus.StartMenu;
+            _runAppMenu = (int)MenuID.StartMenu;
             _defaultValuesSet = true;
         }
 #endregion
@@ -57,10 +57,10 @@ namespace Golf.UI.Menus
         public void LoadMenu(string appFeature)
         {
             if(appFeature == MenuFeatuers[0])
-                _runAppMenu = (int)AppMenus.StartMenu;
+                _runAppMenu = (int)MenuID.StartMenu;
             //=================================\\
             else if (appFeature == MenuFeatuers[1])
-                _runAppMenu = (int)AppMenus.InGameMenu;
+                _runAppMenu = (int)MenuID.InGameMenu;
             //=================================\\
             else
             {
@@ -71,15 +71,15 @@ namespace Golf.UI.Menus
             }
             _appFeatureRequest = appFeature;
         }
-        public void LoadMenu(AppMenus appMenus)
+        public void LoadMenu(MenuID appMenus)
         {
             switch (appMenus)
             {
-                case AppMenus.StartMenu:
-                    _runAppMenu = (int)AppMenus.StartMenu;
+                case MenuID.StartMenu:
+                    _runAppMenu = (int)MenuID.StartMenu;
                     break;
-                case AppMenus.InGameMenu:
-                    _runAppMenu = (int)AppMenus.InGameMenu;
+                case MenuID.InGameMenu:
+                    _runAppMenu = (int)MenuID.StartMenu;
                     break;
                 default:
                     break;
@@ -88,7 +88,7 @@ namespace Golf.UI.Menus
         public Tuple<bool, string> GetMenu(ref bool running)
         {
             ClearMenuElements();
-            if(_runAppMenu == (int)AppMenus.StartMenu)
+            if(_runAppMenu == (int)MenuID.StartMenu)
             {
                 startMenu.LoadMenu(startMenu.PressedButton);
                 foreach (var item in startMenu.MenuElements)
@@ -99,7 +99,7 @@ namespace Golf.UI.Menus
                 PrintMenu();
                 MenuNavigation(ref running);
             }
-            else if (_runAppMenu == (int)AppMenus.InGameMenu)
+            else if (_runAppMenu == (int)MenuID.InGameMenu)
             {
 
             }
@@ -109,7 +109,7 @@ namespace Golf.UI.Menus
         }                                                                              
         private void PrintMenu()
         {
-            if (_runAppMenu == (int)AppMenus.StartMenu)
+            if (_runAppMenu == (int)MenuID.StartMenu)
             {
                 int col = 1;
                 foreach (var item in startMenu.MenuElements)
@@ -123,7 +123,7 @@ namespace Golf.UI.Menus
         {
             ConsoleKeyInfo cki;
             cki = Console.ReadKey();
-            if(_runAppMenu == (int)AppMenus.StartMenu)
+            if(_runAppMenu == (int)MenuID.StartMenu)
             {
                 //navigate UP or DOWN.
                 if (cki.Key.GetHashCode() == 38 || cki.Key.GetHashCode() == 33)//ArrowUp, PgUp

@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Golf.UI;
+using Golf.UI.Menus;
+using Golf.UI.Forms;
+using Golf.Entites;
+using Golf.Entites.Characters;
+using Golf.Entites.Items;
 
 namespace Golf
 {
@@ -13,10 +18,13 @@ namespace Golf
             RunEntity,
             RunUI
         }
-        
+        private static List<Enum> AppFeatureRequests { get; set; }
+        public static List<Enum> RequestedAppFeatures { get; set; }
+
+        /*
         private static string AppFeatureRequest    { get; set; }
         private static string AppFeatureRequsted   { get; set; }
-        
+        */
         private static List<string> AppFeatuers { get; set; }
         private static bool _running;
         private static int _runAppLayer;
@@ -24,32 +32,40 @@ namespace Golf
 
         static Engine()
         {
-            
+
         }
         //Constructor Helpers
         private static void StartUp()
         {
             if(AppFeatuers == null)
             {
-                AppFeatuers = new List<string>();
+                AppFeatuers = new List<string>();// Remember to remove
+                AppFeatureRequests = new List<Enum>();
+                RequestedAppFeatures = new List<Enum>();
             }
             
-            if (AppFeatuers.Count < 1)
+            if (RequestedAppFeatures.Count < 1)
                 ReseiveAppFeatuers();
-            if (AppFeatuers.Count >= 1)
+            //=================================\\
+            if (RequestedAppFeatures.Count >= 1)
                 SendAppFeatuers();
+            //=================================\\
             if (_defualtValuesSet == false)
                 SetDefaultValues();
 
             DebugPrint();
             void ReseiveAppFeatuers()
             {
+                #region comment
+                /*
                 foreach (var item in UIHandler.UIFeatuers)
                     AppFeatuers.Add(item);
 
                 foreach (var item in UIHandler.AppFeatureAccess)
                     AppFeatuers.Add(item);
-
+                */
+                #endregion
+                RequestedAppFeatures.Add(UIID.Menus);
             }
             void SendAppFeatuers()
             {
@@ -57,7 +73,8 @@ namespace Golf
             }
             void SetDefaultValues()
             {
-                AppFeatureRequest = AppFeatuers[0];
+                //AppFeatureRequest = AppFeatuers[0];
+            
                 _runAppLayer = (int)RunAppLayer.RunUI;
                 _running = true;
                 _defualtValuesSet = true;
@@ -77,18 +94,21 @@ namespace Golf
             if (_defualtValuesSet == false)
                 StartUp();
 
+           
             while (_running == true)
             {
+                #region comment
+                /*
                 //=================================\\
                 if (AppFeatureRequest == AppFeatuers[0])
                 {
-                    AppFeatureRequsted = AppFeatureRequest;
+                    //AppFeatureRequsted = AppFeatureRequest;
                     _runAppLayer = (int)RunAppLayer.RunUI;
                 }
                 //=================================\\
                 else if (AppFeatureRequest == AppFeatuers[1])
                 {
-                    AppFeatureRequsted = AppFeatureRequest;
+                    //AppFeatureRequsted = AppFeatureRequest;
                     _runAppLayer = (int)RunAppLayer.RunEntity;
                 }
                 //=================================\\
@@ -102,15 +122,33 @@ namespace Golf
                     _running = false;
                 }
                 //=================================\\
+                */
+                #endregion
 
+                if (RequestedAppFeatures[0].ToString() == UIID.Menus.ToString() ||
+                    RequestedAppFeatures[0].ToString() == UIID.Forms.ToString() ||
+                    RequestedAppFeatures[0].ToString() == UIID.Levels.ToString())
+                    //=================================\\
+                { _runAppLayer = (int)RunAppLayer.RunUI;  }
+                //==============================================================\\
+                else if (RequestedAppFeatures[0].ToString() == EntityID.Character.ToString() ||
+                         RequestedAppFeatures[0].ToString() == EntityID.Item.ToString())
+                        //=================================\\
+                { _runAppLayer = (int)RunAppLayer.RunEntity;  }
+                //=================================\\
+                else
+                {
+
+                }
                 switch (_runAppLayer)
                 {
                     case (int)RunAppLayer.RunUI:
                         Debug.Print(Environment.NewLine);
-                        Debug.Print($"AppFeatureRequest: {AppFeatureRequest}");
+                       // Debug.Print($"AppFeatureRequest: {AppFeatureRequest}");
 
-                        uIHandler.LoadUI(UIHandler.UIID.Menus);
-                        uIHandler.GetUI(_running, UIHandler.UIID.Menus);
+                        //uIHandler.LoadUI(UIID.Menus);
+                        //uIHandler.GetUI();
+
                         //uIHandler.LoadUI(AppFeatureRequest);
                         //_running = uIHandler.GetUI(ref _running);
                         break;

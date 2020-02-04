@@ -7,17 +7,18 @@ using Golf.UI.Forms;
 
 namespace Golf.UI
 {
+    public enum UIID
+    {
+        Menus,
+        Forms,
+        Levels
+    }
     public class UIHandler
     {
         //Public Initialization
-        public enum UIID
-        {
-            Menus,
-            Forms,
-            Levels
-        }
         public static List<string> UIFeatuers { get; set; }
         public static List<string> AppFeatureAccess { get; set; }
+        
 
         //Private Initialization
         private string _appFeatureRequsted;
@@ -119,7 +120,7 @@ namespace Golf.UI
             {
                 case UIID.Menus:
                     _runUI = (int)UIID.Menus;
-                    break;
+                        break;
 
                 case UIID.Forms:
                     _runUI = (int)UIID.Forms;
@@ -159,7 +160,7 @@ namespace Golf.UI
         {
             if (_runUI == (int)UIID.Menus)
             {
-                menuHandler.LoadMenu(MenuHandler.AppMenus.StartMenu);
+                menuHandler.LoadMenu(MenuID.StartMenu);
             }
             else if (_runUI == (int)UIID.Forms)
             {

@@ -9,7 +9,7 @@ using GolfSimplyfied.Logic;
 
 namespace GolfSimplyfied
 {
-    public static class Engine
+    static class Engine
     {
         //Public Static Initialization
 #region
@@ -27,7 +27,7 @@ namespace GolfSimplyfied
         //Private Static Initialization
         private static bool _running;
         private static bool _defaultValuesSet;
-        public static void Main()
+        static void Main()
         {
             //Object Initialization
             MenuHandler menuHandler = new MenuHandler();

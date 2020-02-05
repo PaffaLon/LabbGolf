@@ -40,11 +40,11 @@ namespace GolfSimplyfied
                 if (RequestedAppFeatures[0].ToString() == MenuHandler.MenuID.StartMenu.ToString())
                 {
                     menuHandler.LoadMenu(MenuHandler.MenuID.StartMenu);
-                    menuHandler.GetMenu();
+                    (_running, RequestedAppFeatures[0]) = menuHandler.GetMenu(ref _running);
                 }
                 else if (RequestedAppFeatures[0].ToString() == LevelHandler.LevelID.Toturial.ToString())
                 {
-                    levelHandler.LoadLevel(LevelHandler.LevelID.Toturial);
+                    (RequestedAppFeatures[0]) = levelHandler.LoadLevel(LevelHandler.LevelID.Toturial);
                     levelHandler.GetLevel();
                 }
                 else
@@ -53,6 +53,7 @@ namespace GolfSimplyfied
                 }
             }
             ShutDown();
+            Environment.Exit(0);
         }
         
         
@@ -61,9 +62,6 @@ namespace GolfSimplyfied
         /// </summary>
         private static void StartUp()
         {
-            if (_defaultValuesSet == false)
-                SetDefaultValues();
-            //=================================\\
             if (AppFeatureRequests == null && RequestedAppFeatures == null)
                 ListInitialization();
             //=================================\\
@@ -73,6 +71,9 @@ namespace GolfSimplyfied
                 RequestedAppFeatures = new List<Enum>();
             }
 
+            if (_defaultValuesSet == false)
+                SetDefaultValues();
+            //=================================\\
             //Last Internal Method To Run.
             void SetDefaultValues()
             {
@@ -85,14 +86,15 @@ namespace GolfSimplyfied
                 void ResivedAppFeatuers()
                 {
                     AppFeatureRequests.Add(MenuHandler.MenuID.StartMenu);
-                    AppFeatureRequests.Add(LevelHandler.LevelID.Toturial);
                 }
                 void SendAppFeatuers()
                 {
-
+                    MenuHandler.FeatureIDAccess.Add(LevelHandler.LevelID.Toturial);
+                    LevelHandler.FeatureIDAccess.Add(MenuHandler.MenuID.StartMenu);
                 }
 
-                //Sets the value of feilds.
+                //Sets the value of feilds & properties.
+                RequestedAppFeatures.Add(MenuHandler.MenuID.StartMenu);
                 _running = true;
                 _defaultValuesSet = true;
             }
@@ -101,6 +103,7 @@ namespace GolfSimplyfied
         
         /// <summary>
         /// Runs when the application is shutting down.
+        /// Handels application information before temprary values are lost.
         /// </summary>
         private static void ShutDown()
         {

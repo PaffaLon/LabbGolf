@@ -46,6 +46,7 @@ namespace GolfSimplyfied.UI.Menus.Content
                 this.SelectedMenuItems[3] = (">> Exit <<");
                 #endregion
             }
+            this.ID = MenuHandler.MenuID.StartMenu;
             this.DefaultValues = true;
         }
 #endregion

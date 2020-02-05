@@ -9,6 +9,8 @@ namespace GolfSimplyfied
         {
             MenuHandler menuHandler = new MenuHandler();
                         menuHandler.LoadMenu(MenuHandler.MenuID.StartMenu);
+                        menuHandler.GetMenu();
         }
     }
 }
+<

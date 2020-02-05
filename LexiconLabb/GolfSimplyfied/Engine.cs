@@ -39,12 +39,12 @@ namespace GolfSimplyfied
             {
                 if (RequestedAppFeatures[0].ToString() == MenuHandler.MenuID.StartMenu.ToString())
                 {
-                    menuHandler.LoadMenu(MenuHandler.MenuID.StartMenu);
+                    menuHandler.LoadMenu(AppFeatureRequests[0]);
                     (_running, RequestedAppFeatures[0]) = menuHandler.GetMenu(ref _running);
                 }
                 else if (RequestedAppFeatures[0].ToString() == LevelHandler.LevelID.Toturial.ToString())
                 {
-                    (RequestedAppFeatures[0]) = levelHandler.LoadLevel(LevelHandler.LevelID.Toturial);
+                    levelHandler.LoadLevel(AppFeatureRequests[0]);
                     levelHandler.GetLevel();
                 }
                 else
@@ -89,8 +89,8 @@ namespace GolfSimplyfied
                 }
                 void SendAppFeatuers()
                 {
-                    MenuHandler.FeatureIDAccess.Add(LevelHandler.LevelID.Toturial);
                     LevelHandler.FeatureIDAccess.Add(MenuHandler.MenuID.StartMenu);
+                    MenuHandler.FeatureIDAccess.Add(LevelHandler.LevelID.Toturial);
                 }
 
                 //Sets the value of feilds & properties.

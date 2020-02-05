@@ -45,7 +45,7 @@ namespace GolfSimplyfied.UI.Menus
         }
 #endregion
         //Class Methods
-        public void LoadMenu(MenuID menuID)
+        public void LoadMenu(Enum menuID)
         {
             switch (menuID)
             {
@@ -68,7 +68,7 @@ namespace GolfSimplyfied.UI.Menus
 
             //Returns Engine Instructions
             var tuple = Tuple.Create(item1: running, item2: _requstedFeature);
-            return Tuple;
+            return tuple;
         }
         private void PrintMenu()
         {
@@ -93,28 +93,35 @@ namespace GolfSimplyfied.UI.Menus
             //Navigate UP or DOWN
             if (cki.Key.GetHashCode() == 38 || cki.Key.GetHashCode() == 33)//ArrowUp, PgUp
             {
+                _requstedFeature = MenuID.StartMenu;
+                //======||======||=======||======\\
                 startMenu.PressedButton -= 1;
                 if (startMenu.PressedButton < 1)
                     startMenu.PressedButton = 1;
             }
             else if (cki.Key.GetHashCode() == 40 || cki.Key.GetHashCode() == 34)//ArrowDown, PgDn
             {
+                _requstedFeature = MenuID.StartMenu;
+                //======||======||=======||======\\
                 startMenu.PressedButton += 1;
                 if (startMenu.PressedButton > 4)
                     startMenu.PressedButton = 4;
             }
             else if (cki.Key.GetHashCode() == 9)// TAB
             {
+                _requstedFeature = MenuID.StartMenu;
+                //======||======||=======||======\\
                 startMenu.PressedButton -= 1;
-                if (startMenu.PressedButton < 1 || startMenu.PressedButton > 3) startMenu.PressedButton = 1;
+                if (startMenu.PressedButton < 1 || startMenu.PressedButton > 3)
+                    startMenu.PressedButton = 1;
             }
             //Pressed Buttons
             else if (cki.Key.GetHashCode() == 13 && startMenu.PressedButton == (int)StartMenu.Buttons.NewGame)
             {
                 _requstedFeature = FeatureIDAccess[0];
-                Console.Clear();
-                Console.WriteLine("The New Game feature have not been implemented.");
-                Thread.Sleep(1000);
+                //Console.Clear();
+                //Console.WriteLine("The New Game feature have not been implemented.");
+                //Thread.Sleep(1000);
             }
             else if (cki.Key.GetHashCode() == 13 && startMenu.PressedButton == (int)StartMenu.Buttons.LoadGame)
             {

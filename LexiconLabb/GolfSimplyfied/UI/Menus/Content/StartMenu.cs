@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using GolfSimplyfied.UI.Menus;
 
@@ -7,6 +8,8 @@ namespace GolfSimplyfied.UI.Menus.Content
 {
     sealed class StartMenu : Menu, IMenu
     {
+        //Public Initialization
+#region
         public enum Buttons
         {
             NewGame     = 1,
@@ -14,6 +17,7 @@ namespace GolfSimplyfied.UI.Menus.Content
             ScoreBoard  = 3,
             Exit        = 4
         }
+#endregion
         public StartMenu()
         {
             if (this.DefaultValues == false)
@@ -78,7 +82,10 @@ namespace GolfSimplyfied.UI.Menus.Content
             }
             else
             {
-                
+                Debug.Print("||======||======||======||"       + Environment.NewLine
+                          + "Error message: Unexpected Value." +Environment.NewLine
+                          + $"Resived value: {button}"         + Environment.NewLine
+                          + "Program Location: StartMenu.LoadMenu()");
             }
         }
     }

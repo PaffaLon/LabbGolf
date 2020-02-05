@@ -31,6 +31,7 @@ namespace GolfSimplyfied.UI.Menus
 #region CMM
         private void SetDefaultValues()
         {
+            startMenu.PressedButton = (int)StartMenu.Buttons.NewGame;
             _runAppMenu = (int)MenuID.StartMenu;
             _defaultValuesSet = true;
         }
@@ -121,6 +122,10 @@ namespace GolfSimplyfied.UI.Menus
         }
         private void ClearMenuMemory()
         {
+            if (Console.CursorVisible == true)
+                Console.CursorVisible = false;
+
+            Console.Clear();
             if (startMenu.MenuElements != null)
                 startMenu.MenuElements.Clear();
         }

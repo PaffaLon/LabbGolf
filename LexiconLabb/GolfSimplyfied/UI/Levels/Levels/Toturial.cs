@@ -17,9 +17,20 @@ namespace GolfSimplyfied.UI.Levels.Levels
             this.DefaultValuesSet = true;
         }
         //Class Methods
-        public void Load()
+        /// <summary>
+        /// Gathers the level resourses.
+        /// </summary>
+        public void LoadLevel()
         {
 
         }
+        /// <summary>
+        /// Renders physical level objects to the console.
+        /// </summary>
+        public void RenderLevel()
+        {
+
+        }
+        
     }
 }

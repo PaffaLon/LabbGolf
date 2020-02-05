@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleGolf.Items.Momo
+namespace SimpleGolf.UI.Meneus
 {
-    sealed class GolfBall
+    class MenuHandler
     {
-
     }
 }

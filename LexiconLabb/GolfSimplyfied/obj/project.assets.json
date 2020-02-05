@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\GameLogic\\aaa.csproj",
-      "projectName": "aaa",
-      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\GameLogic\\aaa.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\GolfSimplyfied\\GolfSimplyfied.csproj",
+      "projectName": "GolfSimplyfied",
+      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\GolfSimplyfied\\GolfSimplyfied.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\GameLogic\\obj\\",
+      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\LabbGolf\\LexiconLabb\\GolfSimplyfied\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"

@@ -10,13 +10,18 @@ namespace GolfSimplyfied.UI.Menus
     {
         //Public Initialization
 #region
+        /// <summary>
+        /// MenuID and refference key.
+        /// </summary>
         public enum MenuID
         {
             StartMenu
         }
+        public static List<Enum> FeatureIDAccess { get; set; }
         #endregion
         //Private Initialization
-#region
+        #region
+        private static Enum _requstedFeature;
         private bool _defaultValuesSet;
         private int _runAppMenu;
 #endregion
@@ -24,6 +29,9 @@ namespace GolfSimplyfied.UI.Menus
         StartMenu startMenu = new StartMenu();
         public MenuHandler()
         {
+            if (FeatureIDAccess == null)
+                FeatureIDAccess = new List<Enum>();
+
             if (_defaultValuesSet == false)
                 SetDefaultValues();
         }
@@ -31,6 +39,7 @@ namespace GolfSimplyfied.UI.Menus
 #region CMM
         private void SetDefaultValues()
         {
+            startMenu.PressedButton = (int)StartMenu.Buttons.NewGame;
             _runAppMenu = (int)MenuID.StartMenu;
             _defaultValuesSet = true;
         }
@@ -47,7 +56,7 @@ namespace GolfSimplyfied.UI.Menus
                     break;
             }
         }
-        public void GetMenu()
+        public Tuple<bool, Enum> GetMenu(ref bool running)
         {
             ClearMenuMemory();
             if(_runAppMenu == (int)MenuID.StartMenu)
@@ -55,7 +64,11 @@ namespace GolfSimplyfied.UI.Menus
                 startMenu.LoadMenu(startMenu.PressedButton);
             }   
             PrintMenu();
-            Menunavigation();
+            Menunavigation(ref running);
+
+            //Returns Engine Instructions
+            var tuple = Tuple.Create(item1: running, item2: _requstedFeature);
+            return Tuple;
         }
         private void PrintMenu()
         {
@@ -73,7 +86,7 @@ namespace GolfSimplyfied.UI.Menus
                     break;
             }
         }
-        private void Menunavigation()
+        private bool Menunavigation(ref bool running)
         {
             ConsoleKeyInfo cki;
             cki = Console.ReadKey();
@@ -98,6 +111,7 @@ namespace GolfSimplyfied.UI.Menus
             //Pressed Buttons
             else if (cki.Key.GetHashCode() == 13 && startMenu.PressedButton == (int)StartMenu.Buttons.NewGame)
             {
+                _requstedFeature = FeatureIDAccess[0];
                 Console.Clear();
                 Console.WriteLine("The New Game feature have not been implemented.");
                 Thread.Sleep(1000);
@@ -116,11 +130,16 @@ namespace GolfSimplyfied.UI.Menus
             }
             else if (cki.Key.GetHashCode() == 13 && startMenu.PressedButton == (int)StartMenu.Buttons.Exit)
             {
-                Environment.Exit(0);
+                running = false;
             }
+            return running;
         }
         private void ClearMenuMemory()
         {
+            if (Console.CursorVisible == true)
+                Console.CursorVisible = false;
+
+            Console.Clear();
             if (startMenu.MenuElements != null)
                 startMenu.MenuElements.Clear();
         }

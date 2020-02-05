@@ -6,6 +6,9 @@ namespace GolfSimplyfied.UI.Levels
 {
     abstract class Level
     {
+        //Public Initialization
+
+        //Protected Initialization
         protected bool DefaultValuesSet { get; set; }
         
         /// <summary>

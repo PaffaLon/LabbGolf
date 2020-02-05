@@ -14,8 +14,9 @@ namespace GolfSimplyfied.UI.Menus
         //Public Initialization
         public List<string> MenuElements { get; set; }
         public int PressedButton { get; set; }
+        public Enum ID { get; set; }
 
-        //Protected Initialazation
+        //Protected Initialization
         protected string[] SelectedMenuItems { get; set; }
         protected string[] UnselectedMenuItems { get; set; }
         protected bool DefaultValues { get; set; }

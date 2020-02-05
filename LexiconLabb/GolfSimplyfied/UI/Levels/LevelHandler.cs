@@ -12,6 +12,11 @@ namespace GolfSimplyfied.UI.Levels
         {
             Toturial
         }
+
+        /// <summary>
+        /// LevelID and refference key.
+        /// </summary>
+        public static List<Enum> FeatureIDAccess { get; set; }
         //Private Initialization
         #region
         private bool _defaultValuesSet;

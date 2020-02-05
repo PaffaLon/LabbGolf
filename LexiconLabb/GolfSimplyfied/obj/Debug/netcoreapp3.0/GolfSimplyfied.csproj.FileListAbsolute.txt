@@ -9,3 +9,14 @@ C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\bin\Debu
 C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\bin\Debug\netcoreapp3.0\GolfSimplyfied.pdb
 C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\obj\Debug\netcoreapp3.0\GolfSimplyfied.dll
 C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\obj\Debug\netcoreapp3.0\GolfSimplyfied.pdb
+C:\Users\User\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\bin\Debug\netcoreapp3.0\GolfSimplyfied.exe
+C:\Users\User\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\bin\Debug\netcoreapp3.0\GolfSimplyfied.deps.json
+C:\Users\User\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\bin\Debug\netcoreapp3.0\GolfSimplyfied.runtimeconfig.json
+C:\Users\User\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\bin\Debug\netcoreapp3.0\GolfSimplyfied.runtimeconfig.dev.json
+C:\Users\User\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\bin\Debug\netcoreapp3.0\GolfSimplyfied.dll
+C:\Users\User\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\bin\Debug\netcoreapp3.0\GolfSimplyfied.pdb
+C:\Users\User\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\obj\Debug\netcoreapp3.0\GolfSimplyfied.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\obj\Debug\netcoreapp3.0\GolfSimplyfied.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\obj\Debug\netcoreapp3.0\GolfSimplyfied.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\obj\Debug\netcoreapp3.0\GolfSimplyfied.dll
+C:\Users\User\Documents\GitHub\LabbGolf\LexiconLabb\GolfSimplyfied\obj\Debug\netcoreapp3.0\GolfSimplyfied.pdb

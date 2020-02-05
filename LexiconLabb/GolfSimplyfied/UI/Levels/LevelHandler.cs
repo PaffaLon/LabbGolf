@@ -37,7 +37,7 @@ namespace GolfSimplyfied.UI.Levels
         }
 #endregion
         //Class Methods
-        public void LoadLevel(LevelID levelID)
+        public void LoadLevel(Enum levelID)
         {
             switch (levelID)
             {

@@ -9,7 +9,7 @@ using GolfSimplyfied.Logic;
 
 namespace GolfSimplyfied
 {
-    static class Engine
+    internal static class Engine
     {
         //Public Static Initialization
 #region

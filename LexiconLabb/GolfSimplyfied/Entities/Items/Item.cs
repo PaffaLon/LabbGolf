@@ -8,5 +8,6 @@ namespace GolfSimplyfied.Entities.Items
     {
         protected Enum ItemID { get; set; }
         protected bool DefaultValuesSet { get; set; }
+        protected double Weight { get; set; }
     }
 }

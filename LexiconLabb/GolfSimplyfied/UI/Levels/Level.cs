@@ -4,6 +4,14 @@ using System.Text;
 
 namespace GolfSimplyfied.UI.Levels
 {
+    interface ILevel
+    {
+        public void PushBall() { }
+        public void LevelWin() { }
+        public void LevelDefeat() { }
+        public void LoadLevel(Enum levelID) { }
+        public void RenderLevel() { }
+    }
     abstract class Level
     {
         //Public Initialization

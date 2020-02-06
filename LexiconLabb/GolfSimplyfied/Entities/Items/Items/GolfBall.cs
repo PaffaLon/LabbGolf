@@ -10,5 +10,21 @@ namespace GolfSimplyfied.Entities.Items.Items
         {
 
         }
+        //Consturcor Helper Metods
+        private void SetDefaultValues()
+        {
+
+        }
+        //Class Methods
+        public void SetPositionX()
+        {
+            
+        }
+        public void SetPositionY()
+        {
+
+        }
+
+        
     }
 }

@@ -10,5 +10,10 @@ namespace GolfSimplyfied.Entities.Items.Items
         {
 
         }
+        public int StartingPosition(int newPosition)
+        {
+            this.PositionX = newPosition;
+            return this.PositionX;
+        }
     }
 }

@@ -56,7 +56,6 @@ namespace GolfSimplyfied
             Environment.Exit(0);
         }
         
-        
         /// <summary>
         /// Runs when the application is starting.
         /// </summary>

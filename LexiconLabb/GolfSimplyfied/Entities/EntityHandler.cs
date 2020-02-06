@@ -23,5 +23,10 @@ namespace GolfSimplyfied.Entities
         {
 
         }
+
+        private void GameControlers()
+        {
+            
+        }
     }
 }

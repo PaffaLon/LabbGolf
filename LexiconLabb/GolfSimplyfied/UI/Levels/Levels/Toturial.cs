@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using GolfSimplyfied.Entities.Items.Items;
 
 namespace GolfSimplyfied.UI.Levels.Levels
 {
-    sealed class Toturial : Level
+    sealed class Toturial : Level, ILevel
     {
         public Toturial()
         {
@@ -20,9 +21,11 @@ namespace GolfSimplyfied.UI.Levels.Levels
         /// <summary>
         /// Gathers the level resourses.
         /// </summary>
+        
         public void LoadLevel()
         {
-
+            //Resives Items bound to the level,
+            //Resives UI 
         }
         /// <summary>
         /// Renders physical level objects to the console.
@@ -30,6 +33,11 @@ namespace GolfSimplyfied.UI.Levels.Levels
         public void RenderLevel()
         {
 
+        }
+        private void LevelItems()
+        {
+            GolfBall golfBall = new GolfBall();
+            GolfHole golfHole = new GolfHole();
         }
         
     }

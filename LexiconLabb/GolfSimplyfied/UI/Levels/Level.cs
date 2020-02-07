@@ -15,6 +15,7 @@ namespace GolfSimplyfied.UI.Levels
     abstract class Level
     {
         //Public Initialization
+        public bool WinCondition { get; set; }
 
         //Protected Initialization
         protected bool DefaultValuesSet { get; set; }

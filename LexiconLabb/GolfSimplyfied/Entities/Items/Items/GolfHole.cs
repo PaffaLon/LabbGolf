@@ -14,6 +14,7 @@ namespace GolfSimplyfied.Entities.Items.Items
         {
             this.PositionX = newPosition;
             return this.PositionX;
+
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Golf_2._0
         private bool winConditionMet;
         private bool defaultValuesSet;
         private const double gravity = (9.8);
-        private const double golfHolePosition = 100;
+        private const double golfHolePosition = 1;
 
 
         public Stuff()
@@ -45,19 +45,19 @@ namespace Golf_2._0
             Console.WriteLine("Press arrow UP to increase your strength.");
             Console.WriteLine("Press Arrow DOWN to lower your strength.");
 
-            cki = Console.ReadKey();
             do
             {
+                cki = Console.ReadKey();
                 if (cki.Key.GetHashCode() == 38)//ArrpwUp
                 {
-                    SwingStrength += 1;
+                    SwingStrength += 0.01;
                     Console.WriteLine($"Your swing strength: {SwingStrength}");
                 }
                 else if (cki.Key.GetHashCode() == 40)//Down
                 {
-                    SwingStrength += 1;
+                    SwingStrength -= 0.01;
                     if (SwingStrength < SwingStrengthMin)
-                        SwingStrength = 1;
+                        SwingStrength = 0.01;
 
                     Console.WriteLine($"Your swing strength: {SwingStrength}");
                 }
@@ -72,7 +72,7 @@ namespace Golf_2._0
 
                     _angleInRadianse = ((Math.PI / 180) * Angle);
                     _travelDistance = (Math.Pow(SwingStrength, 2) / gravity * Math.Sin(2 * _angleInRadianse));
-                    _ditsance = GolfBallPosition - _travelDistance;
+                    _ditsance = golfHolePosition - _travelDistance;
 
 
                     if (_ditsance == golfHolePosition)

@@ -1,0 +1,11 @@
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\Golf_2.0\bin\Debug\netcoreapp3.0\Golf_2.0.exe
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\Golf_2.0\bin\Debug\netcoreapp3.0\Golf_2.0.deps.json
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\Golf_2.0\bin\Debug\netcoreapp3.0\Golf_2.0.runtimeconfig.json
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\Golf_2.0\bin\Debug\netcoreapp3.0\Golf_2.0.runtimeconfig.dev.json
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\Golf_2.0\bin\Debug\netcoreapp3.0\Golf_2.0.dll
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\Golf_2.0\bin\Debug\netcoreapp3.0\Golf_2.0.pdb
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\Golf_2.0\obj\Debug\netcoreapp3.0\Golf_2.0.csprojAssemblyReference.cache
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\Golf_2.0\obj\Debug\netcoreapp3.0\Golf_2.0.AssemblyInfoInputs.cache
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\Golf_2.0\obj\Debug\netcoreapp3.0\Golf_2.0.AssemblyInfo.cs
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\Golf_2.0\obj\Debug\netcoreapp3.0\Golf_2.0.dll
+C:\Users\Deltagare\Documents\GitHub\LabbGolf\LexiconLabb\Golf_2.0\obj\Debug\netcoreapp3.0\Golf_2.0.pdb

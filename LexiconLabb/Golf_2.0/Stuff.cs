@@ -34,19 +34,19 @@ namespace Golf_2._0
             GolfBallPosition = 0;
             defaultValuesSet = true;
         }
-#endregion
+        #endregion
         //Class Methods
         public void Momo()
         {
             ConsoleKeyInfo cki;
-            cki = Console.ReadKey();
 
             Console.WriteLine("Game Controles");
             Console.WriteLine("Press space to throw the ball.");
             Console.WriteLine("Press arrow UP to increase your strength.");
             Console.WriteLine("Press Arrow DOWN to lower your strength.");
 
-            while (winConditionMet == false)
+            cki = Console.ReadKey();
+            do
             {
                 if (cki.Key.GetHashCode() == 38)//ArrpwUp
                 {
@@ -67,7 +67,7 @@ namespace Golf_2._0
                     double _travelDistance;
                     double _ditsance;
                     double _angleInRadianse;
-                    amountOfSwings =+ amountOfSwings;
+                    amountOfSwings = +amountOfSwings;
 
 
                     _angleInRadianse = ((Math.PI / 180) * Angle);
@@ -93,7 +93,7 @@ namespace Golf_2._0
                         Thread.Sleep(60000);// Paused 60s
                     }
                 }
-            }
+            } while (winConditionMet == false);
         }
     }
 }

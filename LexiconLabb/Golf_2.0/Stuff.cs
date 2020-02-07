@@ -31,6 +31,7 @@ namespace Golf_2._0
 
         public Stuff()
         {
+            GolfBallPosition = 0;
             if (defaultValuesSet == false)
                 SetDefefaultValues();
         }
@@ -65,8 +66,23 @@ namespace Golf_2._0
             while (winConditionMet == false)
             {
                 //Double.TryParse(Console.ReadLine(), out Angle);
-                SetAngle();
-                ValidAngle = false;
+                //SetAngle();
+                string _Ipt;
+                if (ValidAngle == false)
+                {
+                    Console.SetCursorPosition(70, 0);
+                    Console.WriteLine("                         ");
+                    Console.SetCursorPosition(70, 0);
+                    _Ipt = Console.ReadLine();
+                    double.TryParse(_Ipt, out Angle);
+                    Debug.Print(Angle.ToString());
+
+                    if (Angle > 1.01 || Angle < 380.00)
+                        ValidAngle = true;
+                    else
+                        ValidAngle = false;
+                }
+
                 //ArrpwUp
                 #region comment
                 /*
@@ -116,7 +132,7 @@ namespace Golf_2._0
                 #endregion
                 //Space  cki.Key.GetHashCode() == 32
                 bool gogo = true;
-                if (gogo == true)
+                if (ValidAngle == true)
                 {
                     double _travelDistance;
                     double _distanceToHole;
@@ -142,6 +158,7 @@ namespace Golf_2._0
                     }
                     else if (GolfBallPosition < golfHolePosition || GolfBallPosition > golfHolePosition)
                     {
+                        ValidAngle = false;
                         Console.SetCursorPosition(70, 4);
                         Console.WriteLine($"Chose Angle: {Angle}");
                         Console.SetCursorPosition(70, 5);
@@ -159,6 +176,7 @@ namespace Golf_2._0
                     {
                         Console.WriteLine("Someting Went wrong with the ditsance");
                         Thread.Sleep(60000);// Paused 60s
+                        Console.SetCursorPosition(50,50);
                     }
                 }
             } 
